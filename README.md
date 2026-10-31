@@ -27,6 +27,7 @@ collects them into one dataset where every entry cites where it came from, and a
 - Browse by type (the default view groups every monster with its variants, like Slimes, King slimes, Killing machines…), or sort by date or name
 - Filter by owned / missing / wishlist, by type, by line, or exclusives only, and search in English or Japanese
 - Your collection is saved in your browser. Use **Export collection** to back it up or move it to another device, and **Import collection** to load it.
+- Privacy: your collection never leaves your browser. The site counts visits anonymously with Cloudflare Web Analytics (no cookies, no personal data).
 
 **In Obsidian:** generate one note per figure (with properties for owned, wishlist, price paid, date acquired, where) and an index with progress, wishlist and missing tables:
 
