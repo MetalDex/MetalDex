@@ -212,7 +212,10 @@ td.mono { font-family: var(--f-mono); }
 .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .srcs { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 13px; }
 .srcs a { color: var(--accent); }
-.dlg-foot { display: flex; gap: 8px; justify-content: flex-end; padding: 12px 18px; flex-wrap: wrap; border-top: 1px solid var(--line); }
+.dlg-foot { display: flex; gap: 8px; justify-content: flex-end; align-items: center; padding: 12px 18px; flex-wrap: wrap; border-top: 1px solid var(--line); }
+.dlg-foot .report { margin-right: auto; font-size: 13.5px; }
+a.btn { color: inherit; text-decoration: none; display: inline-block; }
+.share-photo { font-size: 12.5px; text-align: center; }
 .note { font-size: 12.5px; color: var(--muted); }
 .credit { font-size: 11.5px; color: var(--muted); text-align: center; line-height: 1.35; }
 .credit a { color: inherit; }
@@ -341,6 +344,7 @@ details.sales summary { cursor: pointer; color: var(--accent); }
       <button class="btn" id="exportBtn">Export collection</button>
       <button class="btn" id="copyBtn">Copy collection</button>
       <label class="btn" for="importFile">Import collection</label>
+      <a class="btn" id="reportBtn" href="https://github.com/" target="_blank" rel="noopener" title="Opens a short form on GitHub (a free GitHub account is needed to send it)">⚑ Report a mistake or missing figure</a>
       <input id="importFile" type="file" accept="application/json,.json" hidden>
     </div>
   </div>
@@ -652,6 +656,10 @@ details.sales summary { cursor: pointer; color: var(--accent); }
     '&title=' + encodeURIComponent('Wrong match: ' + f.name_en + ' / ' + s[5]) +
     '&figure=' + encodeURIComponent(f.id + ' (' + f.name_en + ')') + '&source=' + encodeURIComponent(s[3]) +
     '&listing=' + encodeURIComponent(s[5]) + '&seen=' + encodeURIComponent(s[0] + ' ¥' + s[1] + ' ' + (s[4] || ''));
+  const fixUrl = f => REPO + '/issues/new?template=fix-figure.yml' +
+    '&title=' + encodeURIComponent('Fix: ' + f.name_en) + '&figure=' + encodeURIComponent(f.name_en + ' (' + f.id + ')');
+  const photoUrl = f => REPO + '/issues/new?template=photo.yml' +
+    '&title=' + encodeURIComponent('Photo: ' + f.name_en) + '&figure=' + encodeURIComponent(f.name_en + ' (' + f.id + ')');
   function salesList(f, p) {
     const ss = p.sales || []; if (!ss.length) return '';
     const n = ss.filter(s => !s[6]).length;
@@ -766,6 +774,7 @@ details.sales summary { cursor: pointer; color: var(--accent); }
             <label class="btn" for="photo" style="text-align:center">${it.photo ? 'Replace my photo' : 'Add my photo'}</label>
             <input id="photo" type="file" accept="image/*" hidden>
             ${it.photo ? '<button type="button" class="btn" id="rmPhoto">Remove my photo</button>' : ''}
+            <a class="share-photo" href="${esc(photoUrl(f))}" target="_blank" rel="noopener" title="Opens a short form on GitHub (a free GitHub account is needed to send it)">Share your photo with MetalDex</a>
           </div>
           <div class="panel">
             <div class="section-t">My copy</div>
@@ -802,7 +811,7 @@ details.sales summary { cursor: pointer; color: var(--accent); }
           ${mk.buy ? `<div class="panel">${mk.buy}</div>` : ''}
         </div>
       </div>
-      <div class="dlg-foot"><button class="btn" value="cancel">Cancel</button><button class="btn primary" value="save" id="dsave">Save</button></div>
+      <div class="dlg-foot"><a class="report" href="${esc(fixUrl(f))}" target="_blank" rel="noopener" title="Opens a short form on GitHub (a free GitHub account is needed to send it)">⚑ Something wrong with this figure? Report it</a><button class="btn" value="cancel">Cancel</button><button class="btn primary" value="save" id="dsave">Save</button></div>
     </form>`;
     dlg.dataset.id = id;
     $('#photo', dlg).addEventListener('change', async e => {
@@ -891,6 +900,7 @@ details.sales summary { cursor: pointer; color: var(--accent); }
 
   let tt; function toast(msg) { document.querySelector('.toast')?.remove(); const t = Object.assign(document.createElement('div'), { className: 'toast', role: 'status', textContent: msg }); document.body.append(t); clearTimeout(tt); tt = setTimeout(() => t.remove(), 2600); }
 
+  $('#reportBtn').href = REPO + '/issues/new/choose';
   { const pi = $('#photoIssue'); pi.href = pi.getAttribute('href').replace(/\/?$/, '/issues/new/choose'); }
   $('#foot-data').innerHTML = `Catalogue: ${FIGS.length} entries, data updated ${esc(DATA.generated)}.${PR ? ` Prices updated ${esc(PR.generated)}.` : ''} Spot a missing figure, a new release or a mistake? <a href="${REPO}/issues/new/choose" target="_blank" rel="noopener">Let us know</a>.`;
   render();
