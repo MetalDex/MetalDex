@@ -3,10 +3,10 @@
  "base": "JPY",
  "source": "European Central Bank via frankfurter.dev",
  "rates": {
-  "USD": 0.0063593,
+  "CNY": 0.042308,
   "EUR": 0.0056922,
   "GBP": 0.0047461,
   "KRW": 8.4913,
-  "CNY": 0.042308
+  "USD": 0.0063593
  }
 }
