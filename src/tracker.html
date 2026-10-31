@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MetalDex: Metallic Monsters Gallery checklist and prices</title>
+<meta name="description" content="A sourced checklist of every Metallic Monsters Gallery die-cast figure, with a collection tracker, real sold prices and where to buy. Fan project.">
+<meta property="og:title" content="MetalDex">
+<meta property="og:description" content="Every Metallic Monsters Gallery figure: checklist, collection tracker, sold prices and where to buy.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23eef2f6'/%3E%3Cstop offset='.5' stop-color='%238a96a3'/%3E%3Cstop offset='1' stop-color='%23d6dde4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-size='36' font-weight='700' text-anchor='middle' fill='%231b2127'%3EM%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#cbe4fa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d1220" media="(prefers-color-scheme: dark)">
+<script>try { const t = JSON.parse(localStorage.getItem('mmg-tracker:v1:ui') || '{}').theme; if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a DQ-style status window up top, a filter rail, then a gallery shelf of die-cast cards. */
+:root {
+  /* Slime theme (the default): the blue of a classic slime, with a glossy highlight */
+  --bg: #cbe4fa;          /* slime blue, light */
+  --surface: #fbfdff;
+  --surface-2: #d8eafb;
+  --fg: #0f2740;          /* deep slime-shadow navy */
+  --muted: #47637f;
+  --line: #a7c9ea;
+  --accent: #1e72c8;      /* slime blue */
+  --accent-fg: #ffffff;
+  --gold: #b88a12;        /* golden slime: owned */
+  --gold-soft: #f6ead0;
+  --wish: #c2416b;
+  --window: #0d1117;      /* status window */
+  --window-fg: #f4f6f8;
+  --window-line: #f4f6f8;
+  --metal-a: #d6e6f5; --metal-b: #94aac0;
+  --sheen: radial-gradient(900px 420px at 10% -12%, rgb(255 255 255 / .7), transparent 60%),
+    radial-gradient(1000px 700px at 100% 110%, rgb(64 146 226 / .35), transparent 65%);
+  --f-display: "Dela Gothic One", "Hiragino Kaku Gothic StdN", "Arial Black", sans-serif;
+  --f-body: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r: 10px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1220; --surface: #151c2e; --surface-2: #1e2740; --fg: #e8edf6; --muted: #9ba8bf; --line: #2b3650;
+    --accent: #7fb0ff; --accent-fg: #0a1020; --gold: #f0c24b; --gold-soft: #3a3120; --wish: #f58bb0;
+    --window: #04060c; --window-fg: #f4f6f8; --window-line: #dfe5ea; --metal-a: #34405a; --metal-b: #181f31;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1220; --surface: #151c2e; --surface-2: #1e2740; --fg: #e8edf6; --muted: #9ba8bf; --line: #2b3650;
+  --accent: #7fb0ff; --accent-fg: #0a1020; --gold: #f0c24b; --gold-soft: #3a3120; --wish: #f58bb0;
+  --window: #04060c; --window-fg: #f4f6f8; --window-line: #dfe5ea; --metal-a: #34405a; --metal-b: #181f31;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+/* hidden must win over display rules like .market { display: grid } (the Shelf button left the market showing) */
+[hidden] { display: none !important; }
+html, body { margin: 0; }
+body { background-color: var(--bg); background-image: var(--sheen); background-attachment: fixed; color: var(--fg); font: 15px/1.55 var(--f-body); }
+/* night mode: a faint field of stars behind the page */
+:root[data-theme="dark"] body { background-image: var(--stars); background-attachment: fixed; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body { background-image: var(--stars); background-attachment: fixed; } }
+:root { --stars: radial-gradient(1px 1px at 12% 18%, rgb(255 255 255 / .35), transparent 60%),
+  radial-gradient(1px 1px at 68% 9%, rgb(255 255 255 / .28), transparent 60%),
+  radial-gradient(1.5px 1.5px at 84% 42%, rgb(255 255 255 / .22), transparent 60%),
+  radial-gradient(1px 1px at 32% 71%, rgb(255 255 255 / .25), transparent 60%),
+  radial-gradient(1px 1px at 91% 83%, rgb(255 255 255 / .2), transparent 60%),
+  radial-gradient(1.5px 1.5px at 6% 92%, rgb(255 255 255 / .18), transparent 60%),
+  radial-gradient(1px 1px at 52% 38%, rgb(255 255 255 / .15), transparent 60%); }
+.theme-btn { white-space: nowrap; }
+a, a:visited { color: var(--accent); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: 16px; padding-block: 20px 64px; display: grid; gap: 18px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Status window */
+.status { background: var(--window); color: var(--window-fg); border: 3px solid var(--window-line); border-radius: 12px; box-shadow: 0 0 0 3px var(--window), 0 10px 30px rgb(0 0 0 / .18); padding: 18px 20px; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 18px 28px; margin: 3px; }
+.status h1 { font: 400 clamp(22px, 3.4vw, 34px)/1.1 var(--f-display); letter-spacing: .01em; }
+.status .sub { color: #b9c3cc; font-size: 13px; margin-top: 6px; max-width: 60ch; }
+.gauges { display: grid; gap: 10px; align-content: center; }
+.gauge { display: grid; grid-template-columns: 5.5em minmax(0, 1fr) auto; align-items: center; gap: 10px; font-family: var(--f-mono); font-size: 13px; font-variant-numeric: tabular-nums; }
+.gauge .lbl { letter-spacing: .08em; text-transform: uppercase; color: #b9c3cc; }
+.bar { height: 10px; border: 2px solid var(--window-fg); border-radius: 3px; overflow: hidden; background: #1c232b; }
+.bar > i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #7fd36b, #c9f08b); transition: width .4s ease; }
+.bar.gold > i { background: linear-gradient(90deg, #d9a521, #ffe38a); }
+.bar.pink > i { background: linear-gradient(90deg, #d84c7c, #ffa1c1); }
+@media (max-width: 760px) { .status { grid-template-columns: 1fr; } }
+
+/* Controls */
+.controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.search { flex: 1 1 240px; min-width: 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--surface); }
+.seg button { border: 0; background: none; padding: 8px 12px; cursor: pointer; font-size: 13.5px; white-space: nowrap; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-fg); }
+select { padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.tools { display: flex; gap: 8px; flex-wrap: wrap; margin-left: auto; }
+@media (max-width: 640px) {
+  .controls select { flex: 1 1 calc(50% - 5px); min-width: 0; }
+  .controls .search { flex-basis: 100%; }
+  .tools { margin-left: 0; }
+}
+.btn { border: 1px solid var(--line); background: var(--surface); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 13.5px; }
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+.resultline { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* Grid */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+@media (max-width: 440px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } }
+.card { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: grid; grid-template-rows: auto 1fr; transition: transform .15s ease, box-shadow .15s ease; }
+.card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgb(0 0 0 / .08); }
+.card.owned { border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
+.thumb { aspect-ratio: 1 / 1; max-width: 100%; overflow: hidden; background: radial-gradient(circle at 30% 25%, var(--metal-a), var(--metal-b)); display: grid; place-items: center; border: 0; padding: 0; cursor: pointer; width: 100%; position: relative; }
+.thumb img { width: 100%; height: 100%; object-fit: contain; }
+.thumb .mono { font: 400 22px/1.25 var(--f-display); color: var(--fg); opacity: .5; padding: 14px; text-align: center; overflow-wrap: anywhere; max-width: 100%; }
+.card.owned .thumb::after { content: "OWNED"; position: absolute; top: 8px; left: 8px; font: 500 10.5px/1 var(--f-mono); letter-spacing: .12em; background: var(--gold); color: #1b1400; padding: 5px 7px; border-radius: 4px; }
+.body { padding: 10px 12px 12px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.name { font-weight: 700; font-size: 14.5px; line-height: 1.3; }
+.ja { font-size: 12.5px; color: var(--muted); line-height: 1.35; }
+.meta { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; font-size: 11.5px; }
+.pill { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .04em; padding: 2px 6px; border-radius: 4px; background: var(--surface-2); color: var(--muted); white-space: nowrap; }
+.pill.ex { background: var(--gold-soft); color: var(--gold); }
+.pill.var { background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); }
+.actions { display: flex; gap: 6px; margin-top: 4px; }
+.own { flex: 1; min-width: 0; border: 1px solid var(--line); background: var(--surface); border-radius: 7px; padding: 7px 8px; cursor: pointer; font-size: 13px; font-weight: 500; }
+.own[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); color: #1b1400; }
+.wish { flex: 0 0 38px; border: 1px solid var(--line); background: var(--surface); border-radius: 7px; cursor: pointer; font-size: 16px; line-height: 1; color: var(--muted); }
+.wish[aria-pressed="true"] { color: var(--wish); border-color: var(--wish); }
+.grp-sec { grid-column: 1 / -1; font: 400 20px/1.2 var(--f-display); margin-top: 18px; padding-bottom: 6px; border-bottom: 2px solid var(--fg); }
+.grp-sec:first-child { margin-top: 0; }
+.grp { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 10px; margin-top: 8px; font-weight: 700; font-size: 15px; }
+.grp .n { font: 500 12px/1 var(--f-mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.grp .n.done { color: var(--gold); }
+.empty { padding: 40px 16px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: var(--r); }
+
+/* Detail drawer */
+dialog { border: 0; padding: 0; width: min(680px, calc(100vw - 24px)); max-height: calc(100vh - 32px); border-radius: 14px; background: var(--surface); color: var(--fg); box-shadow: 0 20px 60px rgb(0 0 0 / .35); }
+dialog::backdrop { background: rgb(5 8 12 / .55); }
+/* "Buying from outside Japan": same wide box of panels as the figure window */
+dialog#abroad { width: min(1120px, calc(100vw - 24px)); border: 3px solid var(--window-line); box-shadow: 0 0 0 3px var(--window), 0 20px 60px rgb(0 0 0 / .45); }
+.guide { display: flex; flex-direction: column; max-height: calc(100vh - 38px); font-size: 14px; line-height: 1.5; }
+.guide .dlg-head h2 { font: 400 22px/1.2 var(--f-display); }
+.guide .dlg-head p { margin: 6px 0 0; color: var(--muted); font-size: 13.5px; max-width: 75ch; }
+.guide-body { flex: 1; overflow-y: auto; display: grid; gap: 14px; padding: 14px 18px 18px; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); align-items: start; }
+.guide-body .col { display: grid; gap: 14px; min-width: 0; }
+.guide .panel { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; align-content: start; overflow-wrap: anywhere; }
+.guide .panel p, .guide .panel ul { margin: 0; }
+.guide ul { padding-left: 18px; display: grid; gap: 4px; }
+.guide a { color: var(--accent); }
+.site-rows { display: grid; gap: 10px; }
+.site-row { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 4px 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line); font-size: 13.5px; }
+.site-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.site-row b { font-size: 14px; }
+.proxies { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
+.proxy { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: var(--surface-2); display: grid; gap: 4px; align-content: start; font-size: 13px; }
+.proxy .name { font-weight: 700; font-size: 14.5px; }
+.proxy .fee { font-family: var(--f-mono); font-size: 12.5px; }
+.proxy .note { font-size: 12.5px; }
+.proxy .go { margin-top: 4px; font-weight: 600; }
+.guide dl { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; margin: 0; font-size: 13.5px; }
+.guide dd { margin: 0; color: var(--muted); }
+@media (max-width: 820px) { .guide-body { grid-template-columns: 1fr; } .site-row { grid-template-columns: 1fr; } }
+/* figure window: a wide box of panels (photo + my copy | market | details + where to buy), scrolling inside */
+dialog#dlg { width: min(1120px, calc(100vw - 24px)); border: 3px solid var(--window-line); box-shadow: 0 0 0 3px var(--window), 0 20px 60px rgb(0 0 0 / .45); }
+#dform { display: flex; flex-direction: column; max-height: calc(100vh - 38px); }
+.dlg-head { display: flex; align-items: flex-start; gap: 14px; padding: 16px 18px 12px; border-bottom: 1px solid var(--line); }
+.dlg-head > div { flex: 1; min-width: 0; }
+.dlg-head .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.dlg-head .chip { font: 500 11.5px/1 var(--f-mono); padding: 5px 8px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--surface-2); }
+.dlg-head .chip.ex { color: var(--gold); border-color: var(--gold); background: transparent; }
+.dlg { flex: 1; overflow-y: auto; display: grid; gap: 14px; padding: 14px 18px 18px;
+  grid-template-columns: 250px minmax(0, 1.15fr) minmax(0, 1fr); grid-template-areas: "side market info"; align-items: start; }
+.dlg .col { display: grid; gap: 14px; min-width: 0; align-content: start; }
+.dlg .side { grid-area: side; } .dlg .mkt { grid-area: market; } .dlg .info { grid-area: info; }
+.dlg .panel { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; align-content: start; }
+.dlg .panel .section-t { margin-top: 2px; }
+.dlg .panel > *, .buy .row > span:first-child { min-width: 0; }
+.buy .row > span:first-child { flex: 1; }
+.dlg .panel { overflow-wrap: anywhere; }
+.mine input, .mine select, .mine textarea { width: 100%; min-width: 0; }
+.row2 > label { min-width: 0; }
+@media (max-width: 980px) { .dlg { grid-template-columns: 230px minmax(0, 1fr); grid-template-areas: "side market" "side info"; } }
+@media (max-width: 640px) { .dlg { grid-template-columns: 1fr; grid-template-areas: "side" "market" "info"; }
+  .dlg .side .thumb { max-width: 240px; justify-self: center; } }
+.dlg .thumb { border-radius: 10px; overflow: hidden; cursor: default; }
+.dlg h2 { font: 400 22px/1.2 var(--f-display); }
+.dlg .ja { font-size: 14px; }
+.kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 12px; font-size: 13.5px; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { color: var(--muted); font-weight: 500; font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; }
+td.mono { font-family: var(--f-mono); }
+.section-t { font: 500 11.5px/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+.mine { display: grid; gap: 8px; }
+.mine label { display: grid; gap: 3px; font-size: 12.5px; color: var(--muted); }
+.mine input, .mine textarea { border: 1px solid var(--line); background: var(--bg); border-radius: 7px; padding: 8px 10px; color: var(--fg); }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.srcs { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 13px; }
+.srcs a { color: var(--accent); }
+.dlg-foot { display: flex; gap: 8px; justify-content: flex-end; padding: 12px 18px; flex-wrap: wrap; border-top: 1px solid var(--line); }
+.note { font-size: 12.5px; color: var(--muted); }
+.credit { font-size: 11.5px; color: var(--muted); text-align: center; line-height: 1.35; }
+.credit a { color: inherit; }
+.toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--window); color: var(--window-fg); border: 2px solid var(--window-line); padding: 9px 14px; border-radius: 8px; font-size: 13.5px; z-index: 10; }
+footer { font-size: 12.5px; color: var(--muted); display: grid; gap: 4px; }
+footer a { color: var(--accent); }
+/* Market (prices) */
+.worth { display: flex; flex-wrap: wrap; gap: 4px 18px; font-family: var(--f-mono); font-size: 13px; color: #b9c3cc; font-variant-numeric: tabular-nums; }
+.worth b { color: var(--window-fg); font-weight: 500; }
+.price { display: flex; align-items: baseline; gap: 6px; font-family: var(--f-mono); font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.price .gp { font-weight: 500; }
+.up { color: #2f9e57; } .down { color: #d2413a; } .flat { color: var(--muted); }
+:root[data-theme="dark"] .up { color: #6fd08f; } :root[data-theme="dark"] .down { color: #ff8a80; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .up { color: #6fd08f; } :root:not([data-theme="light"]) .down { color: #ff8a80; } }
+.market { display: grid; gap: 14px; }
+.mk-intro { margin: 0 0 14px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); font-size: 14px; }
+.mk-intro p { margin: 0; }
+.mk-intro p + p { margin-top: 6px; }
+.save-note { margin: -2px 0 0; text-align: right; }
+@media (max-width: 640px) { .save-note { text-align: left; } }
+.mk-head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+@media (max-width: 860px) { .mk-head { grid-template-columns: 1fr; } }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px 14px; min-width: 0; }
+.panel h3 { font: 500 11.5px/1 var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.movers { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 13px; }
+.movers li { display: flex; justify-content: space-between; gap: 8px; cursor: pointer; }
+.movers li span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.movers li span:last-child { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.mk-table { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow-x: auto; }
+.mk-table table { font-size: 13px; }
+.mk-table td, .mk-table th { padding: 7px 10px; }
+.mk-table th button { all: unset; cursor: pointer; }
+.mk-table th button[aria-sort="descending"]::after { content: " ▾"; }
+.mk-table th button[aria-sort="ascending"]::after { content: " ▴"; }
+.mk-table tr[data-id] { cursor: pointer; }
+.mk-table tr[data-id]:hover td { background: var(--surface-2); }
+.mk-table td.num { text-align: right; font-family: var(--f-mono); }
+.mk-table th.num { text-align: right; }
+.mk-name { display: flex; align-items: center; gap: 8px; min-width: 210px; white-space: normal; }
+.mk-name img, .mk-name .mono { width: 34px; height: 34px; object-fit: contain; border-radius: 6px; background: radial-gradient(circle at 30% 25%, var(--metal-a), var(--metal-b)); font-size: 9px; padding: 2px; flex: 0 0 34px; overflow: hidden; }
+.mk-name small { display: block; color: var(--muted); font-size: 11.5px; }
+.owned-dot { color: var(--gold); }
+.chart { width: 100%; height: auto; display: block; }
+.chart .ln { fill: none; stroke: var(--accent); stroke-width: 2; }
+.chart .ar { fill: color-mix(in srgb, var(--accent) 14%, transparent); }
+.chart .dt { fill: var(--accent); }
+.chart .gd { stroke: var(--line); stroke-width: 1; }
+.chart text { fill: var(--muted); font: 10px var(--f-mono); }
+.buy { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; font-size: 13px; }
+.buy a { color: var(--accent); }
+.buy .row { display: flex; justify-content: space-between; gap: 10px; }
+.buy .row > span:last-child { font-family: var(--f-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+details.sales { margin: 6px 0 2px; font-size: 13px; }
+details.sales summary { cursor: pointer; color: var(--accent); }
+.sale-list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 6px; max-height: 340px; overflow-y: auto; }
+.sale-list li { display: grid; grid-template-columns: auto 1fr auto; gap: 2px 10px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+.sale-list .d { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sale-list .p { font-family: var(--f-mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.sale-list .t { grid-column: 1 / -1; color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+.sale-list .t a { color: var(--accent); white-space: nowrap; }
+.sale-list li.out { opacity: .55; }
+.view-seg { margin-left: 0; }
+.cur-pick { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+.cur-pick select { padding: 6px 8px; font-size: 13px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="status" aria-label="Collection progress">
+    <div>
+      <h1>MetalDex</h1>
+      <p class="sub">Every Dragon Quest Metallic Monsters Gallery figure Square Enix has released, from the 2006 originals to the 40th-anniversary line. Tick off what you own and keep notes on each one.</p>
+    </div>
+    <div class="gauges">
+      <div class="gauge"><span class="lbl">Monsters</span><span class="bar"><i id="g-mmg"></i></span><span id="t-mmg">0/0</span></div>
+      <div class="gauge"><span class="lbl">Exclusive</span><span class="bar gold"><i id="g-ex"></i></span><span id="t-ex">0/0</span></div>
+      <div class="gauge"><span class="lbl">Items</span><span class="bar pink"><i id="g-it"></i></span><span id="t-it">0/0</span></div>
+      <div class="worth" id="worth" hidden></div>
+    </div>
+  </section>
+
+  <div class="controls">
+    <div class="seg view-seg" role="group" aria-label="View">
+      <button data-view="shelf" aria-pressed="true">Shelf</button>
+      <button data-view="market" aria-pressed="false">Market</button>
+    </div>
+    <input id="q" class="search" type="search" placeholder="Search English or Japanese name (e.g. はぐれメタル)" aria-label="Search figures">
+    <div class="seg" role="group" aria-label="Show">
+      <button data-status="all" aria-pressed="true">All</button>
+      <button data-status="owned" aria-pressed="false">Owned</button>
+      <button data-status="missing" aria-pressed="false">Missing</button>
+      <button data-status="wish" aria-pressed="false">Wishlist</button>
+    </div>
+    <select id="line" aria-label="Line">
+      <option value="">All lines</option>
+    </select>
+    <select id="ex" aria-label="Availability">
+      <option value="">Any availability</option>
+      <option value="general">General release</option>
+      <option value="exclusive">Exclusives only</option>
+    </select>
+    <select id="type" aria-label="Type">
+      <option value="">All types</option>
+    </select>
+    <select id="sort" aria-label="Sort">
+      <option value="type">By type</option>
+      <option value="date">Oldest first</option>
+      <option value="date-desc">Newest first</option>
+      <option value="name">Name (A–Z)</option>
+      <option value="name-desc">Name (Z–A)</option>
+      <option value="ja">Name (あいう)</option>
+      <option value="price-desc" data-price>Price (high to low)</option>
+      <option value="price" data-price>Price (low to high)</option>
+      <option value="rise" data-price>Biggest risers (30 days)</option>
+      <option value="fall" data-price>Biggest fallers (30 days)</option>
+      <option value="traded" data-price>Most traded (90 days)</option>
+      <option value="traded-asc" data-price>Least traded (90 days)</option>
+    </select>
+  </div>
+  <div class="controls">
+    <span class="resultline" id="count"></span>
+    <label class="cur-pick" id="curWrap" hidden>Currency <select id="cur" aria-label="Currency"></select></label>
+    <div class="tools">
+      <button class="btn theme-btn" id="themeBtn" type="button"></button>
+      <button class="btn" id="exportBtn">Export collection</button>
+      <button class="btn" id="copyBtn">Copy collection</button>
+      <label class="btn" for="importFile">Import collection</label>
+      <input id="importFile" type="file" accept="application/json,.json" hidden>
+    </div>
+  </div>
+  <p class="note save-note">Your collection is saved in this browser only. Use <b>Export collection</b> now and then to keep a copy or move it to another device.</p>
+
+  <div class="market" id="market" hidden></div>
+  <div class="grid" id="grid" aria-live="polite"></div>
+
+  <footer>
+    <span id="foot-data"></span>
+    <span>Photos belong to their owners and are shown from their original sites, not copied here: official product photos © ARMOR PROJECT/BIRD STUDIO/SQUARE ENIX (shown from the Square Enix e-STORE and Hobby Search), prize-figure photos courtesy of <a href="https://metalfigurecollector.com/dragon-quest-metallic-monsters-gallery/" target="_blank" rel="noopener">Metal Dracky</a>, and photos contributed by collectors (credited on each figure). If you own a photo and want it removed or credited differently, <a id="photoIssue" href="https://github.com/" target="_blank" rel="noopener">let us know</a> and it will be changed promptly.</span>
+    <span>Collecting from outside Japan? <a href="#" data-abroad>How to buy from abroad</a>.</span>
+    <span>Add your own photo of any figure from its detail window. Your collection stays in this browser; use Export to back it up.</span>
+    <span>Fan project. Dragon Quest © ARMOR PROJECT / BIRD STUDIO / SQUARE ENIX. Not affiliated with Square Enix.</span>
+  </footer>
+</div>
+
+<dialog id="dlg" aria-labelledby="d-name"></dialog>
+<dialog id="abroad" aria-labelledby="ab-h"><form method="dialog" class="guide">
+  <div class="dlg-head">
+    <div><h2 id="ab-h">Buying from outside Japan</h2>
+      <p>Most of these figures sell on Japanese sites that only deliver inside Japan. From abroad you buy through a
+      <b>proxy service</b>: it buys the item for you, receives it at its warehouse in Japan and ships it to you, several
+      purchases in one box if you like.</p></div>
+    <button class="btn" value="close" aria-label="Close">✕</button>
+  </div>
+  <div class="guide-body">
+    <div class="col">
+      <div class="panel">
+        <div class="section-t">What you'll pay</div>
+        <ul>
+          <li>The item price, plus the seller's shipping to the proxy's warehouse if the listing doesn't include it</li>
+          <li>The proxy's fee: about ¥300–¥500 per item or per order on most services (see the services below)</li>
+          <li>International shipping, by weight and box size: combining several figures in one parcel saves a lot</li>
+          <li>Your country's import duty or tax when it arrives</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <div class="section-t">Japanese words worth knowing</div>
+        <dl>
+          <dt>未開封</dt><dd>unopened</dd><dt>新品</dt><dd>new</dd><dt>中古 / 開封</dt><dd>used / opened</dd>
+          <dt>箱なし</dt><dd>no box</dd><dt>ジャンク</dt><dd>junk, for parts</dd><dt>セット / まとめ / 体</dt><dd>a set or lot (3体 = three figures)</dd>
+          <dt>周年記念</dt><dd>anniversary edition (40周年 = 40th)</dd><dt>限定</dt><dd>limited / exclusive</dd>
+        </dl>
+        <p class="note">Your browser can translate a whole listing page: right-click and choose "Translate to English".</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="panel">
+        <div class="section-t">Which service for which site</div>
+        <div class="site-rows">
+          <div class="site-row"><b>Yahoo! Auctions</b><span><a href="https://buyee.jp/" target="_blank" rel="noopener">Buyee</a> is Yahoo's own partner: search and bid in English. ZenMarket and FROM JAPAN also bid for you. Every figure has "Search on Buyee" links.</span></div>
+          <div class="site-row"><b>Yahoo! Flea Market</b><span>Buyee shows these listings directly; with ZenMarket, paste the listing's link. Listing ids starting with "z" are Flea Market items.</span></div>
+          <div class="site-row"><b>Mercari</b><span>In the US, Taiwan and Hong Kong, Mercari's own <a href="https://about.mercari.com/en/press/news/articles/20260618globalapp/" target="_blank" rel="noopener">Global app</a> buys from Mercari Japan directly, no proxy needed. Elsewhere: Buyee, ZenMarket or Neokyo.</span></div>
+          <div class="site-row"><b>Square Enix e-STORE</b><span>Needs a proxy that buys from any shop by link: <a href="https://www.remambo.jp/japanese-online-stores/square-enix-store" target="_blank" rel="noopener">Remambo</a> and <a href="https://japanrabbit.com/shops/square-enix" target="_blank" rel="noopener">Japan Rabbit</a> have guides for this store; ZenMarket and Buyee accept shop links too. The store refuses foreign addresses and overseas connections. For pre-orders the proxy orders when you ask and holds it until release; ask first about lottery or member-only sales.</span></div>
+          <div class="site-row"><b>Hobby Search</b><span>Ships worldwide from its <a href="https://www.1999.co.jp/eng/" target="_blank" rel="noopener">English shop</a>; no proxy needed (it won't ship to forwarding addresses).</span></div>
+          <div class="site-row"><b>Sootang</b><span>A Japanese shop: use a proxy that buys from any shop by link.</span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="section-t">The main proxy services</div>
+        <p class="note">Fees as each service published them in 2026. They change often, so check before you buy. We don't earn anything from these links.</p>
+        <div class="proxies">
+          <div class="proxy"><span class="name">Buyee</span><span class="fee">¥500 per order + optional plan up to ¥500</span><span class="note">Yahoo's partner: Yahoo! Auctions and Flea Market listings show up inside Buyee. 30 days free storage.</span><a class="go" href="https://buyee.jp/" target="_blank" rel="noopener">buyee.jp ↗</a></div>
+          <div class="proxy"><span class="name">ZenMarket</span><span class="fee">¥500 per item + about 1% payment fee</span><span class="note">Free packing and consolidation; 60 days free storage.</span><a class="go" href="https://zenmarket.jp/en/" target="_blank" rel="noopener">zenmarket.jp ↗</a></div>
+          <div class="proxy"><span class="name">Neokyo</span><span class="fee">¥350 per item + packing per parcel</span><span class="note">Free consolidation; strong reviews.</span><a class="go" href="https://neokyo.com/" target="_blank" rel="noopener">neokyo.com ↗</a></div>
+          <div class="proxy"><span class="name">FROM JAPAN</span><span class="fee">¥300–¥500 per item; 5% on Yahoo! Auctions</span><span class="note">Pays in two steps: the item first, shipping later.</span><a class="go" href="https://www.fromjapan.co.jp/en/" target="_blank" rel="noopener">fromjapan.co.jp ↗</a></div>
+          <div class="proxy"><span class="name">Remambo</span><span class="fee">fees: see its site</span><span class="note">Orders from any shop by link; has an e-STORE guide.</span><a class="go" href="https://www.remambo.jp/" target="_blank" rel="noopener">remambo.jp ↗</a></div>
+          <div class="proxy"><span class="name">Japan Rabbit</span><span class="fee">fees: see its site</span><span class="note">Orders from any shop by link; has an e-STORE guide.</span><a class="go" href="https://japanrabbit.com/" target="_blank" rel="noopener">japanrabbit.com ↗</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form></dialog>
+
+<script id="figure-data" type="application/json">__FIGURE_DATA__</script>
+<script id="price-data" type="application/json">__PRICE_DATA__</script>
+<script>
+(() => {
+  const DATA = JSON.parse(document.getElementById('figure-data').textContent);
+  const FIGS = DATA.figures;
+  const KEY = 'mmg-tracker:v1';
+  const $ = (s, el = document) => el.querySelector(s);
+  // links and pictures from the data only ever point at https pages (or the visitor's own photo)
+  const safeHref = u => /^https:\/\//i.test(String(u || '')) ? u : '#';
+  const safeSrc = u => /^(https:\/\/|img\/|data:image\/(jpeg|png|webp);)/i.test(String(u || '')) ? u : '';
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  // ---- market prices (prices/aggregate.py); null when the page was built without price data ----
+  let PR = null;
+  try { PR = JSON.parse(document.getElementById('price-data').textContent); } catch (e) {}
+  const P = id => (PR && PR.figures[id]) || null;
+  // ---- currency: prices are stored in yen and converted for display ----
+  const CUR = { JPY: 'Japanese yen', USD: 'US dollar', EUR: 'Euro', GBP: 'British pound', KRW: 'Korean won', CNY: 'Chinese yuan' };
+  let RATES = { date: PR?.rates?.date || null, rates: { JPY: 1, ...(PR?.rates?.rates || {}) } };
+  try { const live = JSON.parse(localStorage.getItem(KEY + ':rates') || 'null'); if (live && live.date > (RATES.date || '')) RATES = { date: live.date, rates: { JPY: 1, ...live.rates } }; } catch (e) {}
+  const curCode = () => (RATES.rates[ui.cur] ? ui.cur : 'JPY');
+  const fmtIn = (n, code) => {
+    const v = n * RATES.rates[code];
+    const digits = code === 'JPY' || code === 'KRW' || Math.abs(v) >= 100 ? 0 : 2;
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: code, currencyDisplay: code === 'CNY' ? 'code' : 'narrowSymbol', minimumFractionDigits: digits, maximumFractionDigits: digits }).format(v).replace(/^CNY\s?/, 'CN¥');
+  };
+  const yenf = n => n == null ? '—' : fmtIn(n, curCode());
+  // the original yen amount, shown next to converted prices
+  const usd = n => n && curCode() !== 'JPY' ? `<span class="note">(${fmtIn(n, 'JPY')})</span>` : '';
+  const chgHtml = c => c == null ? '' : `<span class="${c > 0.5 ? 'up' : c < -0.5 ? 'down' : 'flat'}" title="Change in median price, last 30 days vs. the 60 days before">${c > 0.5 ? '▲' : c < -0.5 ? '▼' : '■'}${Math.abs(c) < 10 ? Math.abs(c).toFixed(1) : Math.round(Math.abs(c))}%</span>`;
+  const srcName = k => (PR && PR.sources[k]) || k;
+
+  // ---- collection state (localStorage, wrapped) ----
+  let col = { schema: 1, items: {} };
+  try { const raw = localStorage.getItem(KEY); if (raw) col = JSON.parse(raw); } catch (e) {}
+  if (!col.items) col.items = {};
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(col)); } catch (e) { toast('Could not save in this browser. Use Export to keep a copy.'); } };
+  const item = id => (col.items[id] ||= {});
+  const prune = id => { const it = col.items[id]; if (it && !it.owned && !it.wish && !it.paid && !it.where && !it.notes && !it.photo && !it.got) delete col.items[id]; };
+
+  let ui = { q: '', status: 'all', line: '', ex: '', type: '', sort: 'type', view: 'shelf', cur: 'JPY' };
+  try { const saved = JSON.parse(localStorage.getItem(KEY + ':ui') || '{}'); if (!saved.v2) { saved.sort = 'type'; saved.v2 = true; } Object.assign(ui, saved, { q: '' }); } catch (e) {}
+  ui.v2 = true;
+  const saveUi = () => { try { localStorage.setItem(KEY + ':ui', JSON.stringify(ui)); } catch (e) {} };
+  // theme: auto (follow the device), light, or night; remembered in this browser
+  const THEMES = { auto: ['Auto', '◐'], light: ['Slime', '●'], dark: ['Night', '☾'] };
+  function applyTheme() {
+    const t = THEMES[ui.theme] ? ui.theme : 'auto';
+    if (t === 'auto') delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = t;
+    const b = $('#themeBtn'); if (b) { b.textContent = `${THEMES[t][1]} ${THEMES[t][0]}`; b.title = `Theme: ${THEMES[t][0]}. Click to switch (Auto follows your device: Slime by day, Night in dark mode).`; b.setAttribute('aria-label', b.title); }
+  }
+  $('#themeBtn').addEventListener('click', () => { const order = ['auto', 'light', 'dark']; ui.theme = order[(order.indexOf(ui.theme || 'auto') + 1) % 3]; saveUi(); applyTheme(); });
+  applyTheme();
+
+  // ---- filters ----
+  const lineSel = $('#line');
+  for (const [k, v] of Object.entries(DATA.lines)) lineSel.insertAdjacentHTML('beforeend', `<option value="${k}">${esc(v)}</option>`);
+  const typeSel = $('#type');
+  for (const sec of [...new Set(DATA.groups.map(g => g.section))]) {
+    typeSel.insertAdjacentHTML('beforeend', `<optgroup label="${esc(sec)}">${DATA.groups.filter(g => g.section === sec).map(g => `<option value="${esc(g.name)}">${esc(g.name)}</option>`).join('')}</optgroup>`);
+  }
+  if (!DATA.groups.some(g => g.name === ui.type)) ui.type = '';
+  typeSel.value = ui.type;
+  if (!PR) { document.querySelectorAll('[data-price]').forEach(o => o.remove()); document.querySelector('.view-seg').hidden = true; ui.view = 'shelf'; if (/price|rise|fall|traded/.test(ui.sort)) ui.sort = 'type'; }
+  lineSel.value = ui.line; $('#ex').value = ui.ex; $('#sort').value = ui.sort;
+  if (PR) {
+    const sel = $('#cur'); $('#curWrap').hidden = false;
+    const fill = () => { sel.innerHTML = Object.keys(CUR).filter(c => RATES.rates[c]).map(c => `<option value="${c}">${c} – ${esc(CUR[c])}</option>`).join(''); sel.value = curCode(); };
+    fill();
+    sel.addEventListener('change', () => { ui.cur = sel.value; saveUi(); render(); if (dlg.open) openDetail(dlg.dataset.id); });
+    // refresh exchange rates when online (European Central Bank rates via frankfurter.dev); the built-in ones are the fallback
+    if (navigator.onLine !== false && (!RATES.date || RATES.date < new Date(Date.now() - 864e5).toISOString().slice(0, 10))) {
+      fetch('https://api.frankfurter.dev/v1/latest?from=JPY&to=USD,EUR,GBP,KRW,CNY').then(r => r.ok ? r.json() : null).then(j => {
+        if (!j || !j.rates || !(j.date > (RATES.date || ''))) return;
+        RATES = { date: j.date, rates: { JPY: 1, ...j.rates } };
+        try { localStorage.setItem(KEY + ':rates', JSON.stringify({ date: j.date, rates: j.rates })); } catch (e) {}
+        fill(); if (curCode() !== 'JPY') render();
+      }).catch(() => {});
+    }
+  }
+  document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === ui.view)));
+  document.querySelectorAll('[data-status]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.status === ui.status)));
+
+  const norm = s => (s || '').toLowerCase().normalize('NFKC');
+  const year = f => (f.first_release || '').slice(0, 4);
+  const exLabel = f => f.exclusive ? DATA.exclusive_labels[f.exclusive] : '';
+
+  function visible() {
+    const q = norm(ui.q);
+    let list = FIGS.filter(f => {
+      const it = col.items[f.id] || {};
+      if (ui.status === 'owned' && !it.owned) return false;
+      if (ui.status === 'missing' && it.owned) return false;
+      if (ui.status === 'wish' && !it.wish) return false;
+      if (ui.line && f.line !== ui.line) return false;
+      if (ui.type && f.group !== ui.type) return false;
+      if (ui.ex === 'general' && f.exclusive) return false;
+      if (ui.ex === 'exclusive' && !f.exclusive) return false;
+      if (q && !(norm(f.name_en).includes(q) || norm(f.name_ja).includes(q) || (f.aka || []).some(a => norm(a).includes(q)) || f.id.includes(q) || f.releases.some(r => r.jan.includes(q)))) return false;
+      return true;
+    });
+    const d = f => f.first_release || '9999';
+    const num = (f, k, dir) => { const v = P(f.id)?.[k]; return v == null ? Infinity : dir * v; };
+    const by = {
+      'price-desc': (a, b) => num(a, 'guide', -1) - num(b, 'guide', -1) || a.order - b.order,
+      'price': (a, b) => num(a, 'guide', 1) - num(b, 'guide', 1) || a.order - b.order,
+      'rise': (a, b) => num(a, 'chg', -1) - num(b, 'chg', -1) || a.order - b.order,
+      'fall': (a, b) => num(a, 'chg', 1) - num(b, 'chg', 1) || a.order - b.order,
+      'traded': (a, b) => num(a, 'n90', -1) - num(b, 'n90', -1) || a.order - b.order,
+      'traded-asc': (a, b) => num(a, 'n90', 1) - num(b, 'n90', 1) || a.order - b.order,
+      'type': (a, b) => a.order - b.order,
+      'date': (a, b) => d(a).localeCompare(d(b)),
+      'date-desc': (a, b) => d(b).localeCompare(d(a)),
+      'name': (a, b) => a.name_en.localeCompare(b.name_en),
+      'name-desc': (a, b) => b.name_en.localeCompare(a.name_en),
+      'ja': (a, b) => a.name_ja.localeCompare(b.name_ja, 'ja'),
+    }[ui.sort];
+    return list.sort(by);
+  }
+
+  function thumb(f, cls = '') {
+    const it = col.items[f.id] || {};
+    const src = safeSrc(it.photo || f.image);
+    const mono = `<span class="mono">${esc(f.name_ja.replace(/\s*[～〜].*$/, '').replace(/^(バトル|スペシャル)\s*/, ''))}</span>`;
+    return src ? `<img src="${esc(src)}" alt="${esc(f.name_en)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'mono',textContent:${esc(JSON.stringify(f.name_ja.replace(/\s*[～〜].*$/, '')))}}))">` : mono;
+  }
+
+  function card(f) {
+    const it = col.items[f.id] || {};
+    const pills = [
+      year(f) ? `<span class="pill">${year(f)}</span>` : `<span class="pill">date ?</span>`,
+      f.exclusive ? `<span class="pill ex">${esc(({'official-shop':'Shop excl.','estore':'e-STORE','yahoo':'Yahoo!','loft':'LOFT','bundle':'Game bundle','event':'Event','prize':'Prize only'})[f.exclusive] || 'Limited')}</span>` : '',
+      f.variant ? `<span class="pill var">${esc(f.variant)}</span>` : '',
+    ].join('');
+    return `<article class="card${it.owned ? ' owned' : ''}" data-id="${f.id}">
+      <button class="thumb" data-open aria-label="Details for ${esc(f.name_en)}">${thumb(f)}</button>
+      <div class="body">
+        <div class="name">${esc(f.name_en)}</div>
+        <div class="ja" lang="ja">${esc(f.name_ja)}</div>
+        <div class="meta">${pills}</div>
+        ${P(f.id)?.guide ? `<div class="price" title="Guide price: median sale, last ${P(f.id).basis} days (${P(f.id).basis === 30 ? P(f.id).n30 : P(f.id).n90} sales)"><span class="gp">${yenf(P(f.id).guide)}</span>${chgHtml(P(f.id).chg)}</div>` : ''}
+        <div class="actions">
+          <button class="own" data-own aria-pressed="${!!it.owned}">${it.owned ? 'Owned' : 'Mark owned'}</button>
+          <button class="wish" data-wish aria-pressed="${!!it.wish}" aria-label="Wishlist" title="Wishlist">${it.wish ? '★' : '☆'}</button>
+        </div>
+      </div>
+    </article>`;
+  }
+
+  function groupCounts() {
+    document.querySelectorAll('.grp[data-group]').forEach(h => {
+      const all = FIGS.filter(f => f.group === h.dataset.group);
+      const own = all.filter(f => col.items[f.id]?.owned).length;
+      const n = h.querySelector('.n'); n.textContent = `${own}/${all.length} owned`; n.classList.toggle('done', own === all.length);
+    });
+  }
+
+  function render() {
+    const list = visible();
+    $('#market').hidden = ui.view !== 'market'; $('#grid').hidden = ui.view === 'market';
+    if (ui.view === 'market') { renderMarket(list); $('#count').textContent = `${list.length} of ${FIGS.length} shown`; gauges(); return; }
+    let html = '';
+    if (ui.sort === 'type') {
+      let sec = '', grp = '';
+      for (const f of list) {
+        if (f.section !== sec) { sec = f.section; html += `<h2 class="grp-sec">${esc(sec)}</h2>`; }
+        if (f.group !== grp) { grp = f.group; html += `<h3 class="grp" data-group="${esc(grp)}">${esc(grp)} <span class="n"></span></h3>`; }
+        html += card(f);
+      }
+    } else html = list.map(card).join('');
+    $('#grid').innerHTML = list.length ? html : `<div class="empty">No figures match these filters.</div>`;
+    groupCounts();
+    $('#count').textContent = `${list.length} of ${FIGS.length} shown`;
+    gauges();
+  }
+
+  function gauges() {
+    const set = (fs, g, t) => {
+      const n = fs.length, o = fs.filter(f => col.items[f.id]?.owned).length;
+      $(g).style.width = n ? (o / n * 100) + '%' : '0'; $(t).textContent = `${o}/${n}`;
+    };
+    set(FIGS.filter(f => f.line !== 'items'), '#g-mmg', '#t-mmg');
+    set(FIGS.filter(f => f.line !== 'items' && f.exclusive), '#g-ex', '#t-ex');
+    set(FIGS.filter(f => f.line === 'items'), '#g-it', '#t-it');
+    if (PR) {
+      const sum = fs => fs.reduce((a, f) => a + (P(f.id)?.guide || 0), 0);
+      const owned = FIGS.filter(f => col.items[f.id]?.owned), wish = FIGS.filter(f => col.items[f.id]?.wish && !col.items[f.id]?.owned);
+      const priced = owned.filter(f => P(f.id)?.guide).length;
+      const w = $('#worth'); w.hidden = false;
+      w.innerHTML = `<span title="Sum of guide prices for the ${priced} of ${owned.length} owned figures that have one">Collection value <b>${yenf(sum(owned))}</b> ${usd(sum(owned))}</span>` +
+        (wish.length ? `<span>Wishlist <b>${yenf(sum(wish))}</b></span>` : '');
+    }
+  }
+
+  // ---- charts (inline SVG) ----
+  function chart(pts, fmt = yenf, w = 560, h = 150) {
+    if (!pts || pts.length < 2) return '<p class="note">Not enough sales yet for a chart.</p>';
+    const pad = { l: 52, r: 10, t: 10, b: 20 };
+    const xs = pts.map(p => Date.parse(p[0])), ys = pts.map(p => p[1]);
+    const x0 = Math.min(...xs), x1 = Math.max(...xs);
+    let y0 = Math.min(...ys), y1 = Math.max(...ys); const sp = (y1 - y0) || y1 * 0.1 || 1; y0 -= sp * 0.12; y1 += sp * 0.12;
+    const X = x => pad.l + (x - x0) / ((x1 - x0) || 1) * (w - pad.l - pad.r);
+    const Y = y => pad.t + (1 - (y - y0) / (y1 - y0)) * (h - pad.t - pad.b);
+    const line = pts.map((p, i) => `${i ? 'L' : 'M'}${X(xs[i]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join('');
+    const area = `${line}L${X(x1).toFixed(1)},${h - pad.b}L${X(x0).toFixed(1)},${h - pad.b}Z`;
+    const grid = [0, .5, 1].map(t => { const v = y0 + (y1 - y0) * (0.12 / 1.24 + t * (1 / 1.24)); const yy = Y(v).toFixed(1); return `<line class="gd" x1="${pad.l}" x2="${w - pad.r}" y1="${yy}" y2="${yy}"/><text x="${pad.l - 6}" y="${yy}" text-anchor="end" dominant-baseline="middle">${esc(fmt(v))}</text>`; }).join('');
+    const dots = pts.map((p, i) => `<circle class="dt" cx="${X(xs[i]).toFixed(1)}" cy="${Y(p[1]).toFixed(1)}" r="${(2 + Math.min(3, Math.sqrt(p[2] || 1))).toFixed(1)}"><title>Week of ${esc(p[0])}: ${esc(fmt(p[1]))}${p[2] ? ` (${p[2]} sale${p[2] > 1 ? 's' : ''})` : ''}</title></circle>`).join('');
+    const lab = t => new Date(t).toISOString().slice(0, 10);
+    return `<svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="Weekly median price">${grid}<path class="ar" d="${area}"/><path class="ln" d="${line}"/>${dots}<text x="${pad.l}" y="${h - 4}">${lab(x0)}</text><text x="${w - pad.r}" y="${h - 4}" text-anchor="end">${lab(x1)}</text></svg>`;
+  }
+
+  // ---- market view (price table) ----
+  function mkThumb(f) {
+    const src = safeSrc((col.items[f.id] || {}).photo || f.image);
+    return src ? `<img src="${esc(src)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : `<span class="mono"></span>`;
+  }
+  // shops that only ship within Japan (buyers abroad need a proxy service); Hobby Search ships internationally
+  const JP_ONLY = { yahoo: true, mercari: true, estore: true };
+  const searchQ = f => ((f.line === 'items' ? 'メタリックアイテムズギャラリー ' : 'メタリックモンスターズギャラリー ') + f.name_ja.replace(/[～〜（）()＜＞<>]/g, ' ')).replace(/\s+/g, ' ').trim();
+  const searchLinks = f => {
+    const q = encodeURIComponent(searchQ(f));
+    return `<a href="https://auctions.yahoo.co.jp/search/search?p=${q}" target="_blank" rel="noopener">Search Yahoo! Auctions</a> · <a href="https://jp.mercari.com/search?keyword=${q}&status=on_sale" target="_blank" rel="noopener">Search Mercari</a>`;
+  };
+  // the same searches through Buyee (English, ships abroad); URL formats checked on buyee.jp in Oct 2026
+  const buyeeLinks = f => {
+    const q = encodeURIComponent(searchQ(f));
+    return `<a href="https://buyee.jp/item/search/query/${q}?translationType=1" target="_blank" rel="noopener">Yahoo! Auctions</a> · <a href="https://buyee.jp/paypayfleamarket/search?keyword=${q}" target="_blank" rel="noopener">Yahoo! Flea Market</a> · <a href="https://buyee.jp/mercari/search?keyword=${q}" target="_blank" rel="noopener">Mercari</a>`;
+  };
+  // the sales behind a guide price, each with a "Wrong figure?" report (a pre-filled GitHub issue form)
+  const REPO = 'https://github.com/'.replace(/\/$/, '');
+  const COND_TXT = { n: 'unopened', u: 'used', x: '' };
+  const reportUrl = (f, s) => REPO + '/issues/new?template=wrong-match.yml' +
+    '&title=' + encodeURIComponent('Wrong match: ' + f.name_en + ' / ' + s[5]) +
+    '&figure=' + encodeURIComponent(f.id + ' (' + f.name_en + ')') + '&source=' + encodeURIComponent(s[3]) +
+    '&listing=' + encodeURIComponent(s[5]) + '&seen=' + encodeURIComponent(s[0] + ' ¥' + s[1] + ' ' + (s[4] || ''));
+  function salesList(f, p) {
+    const ss = p.sales || []; if (!ss.length) return '';
+    const n = ss.filter(s => !s[6]).length;
+    const rows = ss.map(s => `<li class="${s[6] ? 'out' : ''}"><span class="d">${esc(s[0])}</span><span>${esc(s[3] === 'yahoo' && /^z/.test(s[5]) ? 'Yahoo! Flea Market' : srcName(s[3]))}${COND_TXT[s[2]] ? ', ' + COND_TXT[s[2]] : ''}${s[6] ? ' · <b>not counted</b> (far from the usual price)' : ''}</span><span class="p">${yenf(s[1])}</span>
+      <span class="t">${s[4] ? esc(s[4]) : '<i>title not recorded</i>'}${s[7] ? ` · <a href="${esc(safeHref(s[7]))}" target="_blank" rel="noopener">View listing ↗</a>` : ''} · <a href="${esc(reportUrl(f, s))}" target="_blank" rel="noopener">Wrong figure?</a></span></li>`).join('');
+    return `<details class="sales"><summary>The ${n} sale${n === 1 ? '' : 's'} behind this price (last 90 days)</summary>
+      <p class="note">Every completed sale matched to this figure, with the seller's listing title.${ss.some(s => s[7]) ? ` The newest sales link to their listing; each link was checked and still opened on ${esc(PR.links_checked || '')} (pages in Japanese: use your browser's translate).` : ''} If one isn't this figure, press "Wrong figure?" to report it; confirmed reports are fixed for everyone.${PR.audit ? ' ' + esc(PR.audit) : ''}</p>
+      <ul class="sale-list">${rows}</ul></details>`;
+  }
+  // eBay (US): only a search, not collected (no API keys); US sellers list these in English
+  const ebayQ = f => ('dragon quest metallic monsters gallery ' + (f.name_en || '').replace(/[^\p{L}\p{N}' ]+/gu, ' ')).replace(/\s+/g, ' ').trim();
+  const ebayLinks = f => {
+    const u = 'https://www.ebay.com/sch/i.html?_nkw=' + encodeURIComponent(ebayQ(f));
+    return `<p class="note">eBay (US): <a href="${u}" target="_blank" rel="noopener">Search listings</a> · <a href="${u}&LH_Sold=1&LH_Complete=1" target="_blank" rel="noopener">Recent sold prices</a>. Not included in the guide price; US prices are usually well above Japan's.</p>`;
+  };
+  function cheapest(p) {
+    const opts = [...(p.asks || []).map(a => ({ src: a[0], price: a[1], url: '', what: a[2] === 'new' ? 'second-hand, unopened' : 'second-hand' })),
+                  ...(p.shops || []).map(s => ({ src: s[0], price: s[1], url: s[3], what: s[2] === 'pre' ? 'pre-order' : 'in stock' }))];
+    return opts.sort((a, b) => a.price - b.price)[0] || null;
+  }
+  function renderMarket(list) {
+    const priced = FIGS.filter(f => P(f.id)?.chg != null && P(f.id).n30 >= 3);
+    const mv = (arr) => arr.map(f => `<li data-id="${f.id}"><span>${esc(f.name_en)}</span><span>${chgHtml(P(f.id).chg)}</span></li>`).join('') || '<li class="note">Not enough sales yet</li>';
+    const risers = [...priced].sort((a, b) => P(b.id).chg - P(a.id).chg).slice(0, 5).filter(f => P(f.id).chg > 0);
+    const fallers = [...priced].sort((a, b) => P(a.id).chg - P(b.id).chg).slice(0, 5).filter(f => P(f.id).chg < 0);
+    const idx = PR.index || [];
+    const head = `<div class="mk-intro"><p><b>What these prices are:</b> what each figure actually sold for second-hand in Japan (Yahoo! Auctions and Mercari) over the last few months. The guide price is the middle of those sales, so one lucky or unlucky auction doesn't move it much.</p><p>We track Japanese prices because that's where these figures are made and sold. The US market is generally priced much higher, so eBay prices are linked on each figure but not counted. Lots, sets and damaged figures are left out.</p></div>
+    <div class="mk-head">
+      <div class="panel"><h3>Gallery index</h3>${chart(idx.slice(-26), v => Math.round(v).toString(), 560, 140)}<p class="note">Each week: how figures sold compared with their usual price (100 = usual). Based on ${PR.sales.toLocaleString('en-US')} sales since ${esc(PR.since || '—')}.${PR.audit ? ' ' + esc(PR.audit) : ''} Open a figure to see the sales behind its price.</p></div>
+      <div class="panel"><h3>Risers, 30 days</h3><ul class="movers">${mv(risers)}</ul></div>
+      <div class="panel"><h3>Fallers, 30 days</h3><ul class="movers">${mv(fallers)}</ul></div>
+    </div>`;
+    // each header toggles between two sorts: first click = the first one, click again = the reverse
+    const th = (label, down, up, cls = '', firstDir = 'descending') => {
+      const other = firstDir === 'descending' ? 'ascending' : 'descending';
+      const dir = ui.sort === down ? firstDir : ui.sort === up ? other : '';
+      return `<th class="${cls}"><button data-sort="${down}" data-alt="${up}" title="Click to sort; click again to reverse"${dir ? ` aria-sort="${dir}"` : ''}>${label}</button></th>`;
+    };
+    const rows = list.map(f => {
+      const p = P(f.id) || {}; const it = col.items[f.id] || {}; const c = p.guide != null || p.asks?.length || p.shops?.length ? cheapest(p) : null;
+      return `<tr data-id="${f.id}">
+        <td><div class="mk-name">${mkThumb(f)}<div>${it.owned ? '<span class="owned-dot" title="Owned">● </span>' : ''}${esc(f.name_en)}<small lang="ja">${esc(f.name_ja)}</small></div></div></td>
+        <td class="num">${yenf(p.guide)}</td>
+        <td class="num">${chgHtml(p.chg) || '—'}</td>
+        <td class="num">${p.n90 || '—'}</td>
+        <td class="num">${p.low != null ? yenf(p.low) + ' – ' + yenf(p.high) : '—'}</td>
+        <td>${c ? `${c.url ? `<a href="${esc(safeHref(c.url))}" target="_blank" rel="noopener" data-ext>${yenf(c.price)}</a>` : yenf(c.price)} <span class="note">${esc(srcName(c.src))}, ${esc(c.what)}</span>` : '—'}</td>
+      </tr>`;
+    }).join('');
+    $('#market').innerHTML = head + `<div class="mk-table"><table><thead><tr>${th('Figure', 'name', 'name-desc', '', 'ascending')}${th('Guide price', 'price-desc', 'price', 'num')}${th('30 days', 'rise', 'fall', 'num')}${th('Sales (90 d)', 'traded', 'traded-asc', 'num')}<th class="num">Range (90 d)</th><th>Cheapest now</th></tr></thead><tbody>${rows || '<tr><td colspan="6" class="note">No figures match these filters.</td></tr>'}</tbody></table></div>
+      <p class="note">Guide price is the median completed second-hand sale over the last 30 days, or 90 days for figures with fewer than 5 recent sales (Yahoo! Auctions and Mercari; lots, sets and junk left out). Prices in ${esc(CUR[curCode()].toLowerCase())}${curCode() !== 'JPY' ? ` (converted from yen at ${esc(fmtIn(1000, curCode()))} per ¥1,000, rates of ${esc(RATES.date || '—')})` : ''}. Listings snapshot: ${esc(PR.snapshot || '—')}.</p>`;
+  }
+  $('#market').addEventListener('click', e => {
+    if (e.target.closest('[data-ext]')) return;
+    const s = e.target.closest('[data-sort]'); if (s) { ui.sort = ui.sort === s.dataset.sort ? s.dataset.alt : s.dataset.sort; $('#sort').value = ui.sort; saveUi(); render(); return; }
+    const r = e.target.closest('[data-id]'); if (r) openDetail(r.dataset.id);
+  });
+  document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => {
+    ui.view = b.dataset.view; document.querySelectorAll('[data-view]').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    // the market starts on price order; going back to the shelf restores the type grouping it had
+    if (ui.view === 'market' && ui.sort === 'type') { ui.shelfSort = 'type'; ui.sort = 'price-desc'; $('#sort').value = ui.sort; }
+    else if (ui.view === 'shelf' && ui.shelfSort) { ui.sort = ui.shelfSort; delete ui.shelfSort; $('#sort').value = ui.sort; }
+    saveUi(); render();
+  }));
+
+  function refreshCard(id) {
+    const el = document.querySelector(`.card[data-id="${CSS.escape(id)}"]`);
+    if (!el) return;
+    const f = FIGS.find(x => x.id === id);
+    if (ui.status !== 'all') return render();
+    el.outerHTML = card(f); gauges(); groupCounts();
+  }
+
+  // ---- grid events ----
+  $('#grid').addEventListener('click', e => {
+    const c = e.target.closest('.card'); if (!c) return;
+    const id = c.dataset.id;
+    if (e.target.closest('[data-own]')) { const it = item(id); it.owned = !it.owned; if (it.owned && !it.got) it.got = new Date().toISOString().slice(0, 10); prune(id); save(); refreshCard(id); }
+    else if (e.target.closest('[data-wish]')) { const it = item(id); it.wish = !it.wish; prune(id); save(); refreshCard(id); }
+    else if (e.target.closest('[data-open]')) openDetail(id);
+  });
+
+  $('#q').addEventListener('input', e => { ui.q = e.target.value; render(); });
+  document.querySelectorAll('[data-status]').forEach(b => b.addEventListener('click', () => {
+    ui.status = b.dataset.status; document.querySelectorAll('[data-status]').forEach(x => x.setAttribute('aria-pressed', String(x === b))); saveUi(); render();
+  }));
+  lineSel.addEventListener('change', e => { ui.line = e.target.value; saveUi(); render(); });
+  typeSel.addEventListener('change', e => { ui.type = e.target.value; saveUi(); render(); });
+  $('#ex').addEventListener('change', e => { ui.ex = e.target.value; saveUi(); render(); });
+  $('#sort').addEventListener('change', e => { ui.sort = e.target.value; saveUi(); render(); });
+
+  // ---- detail dialog ----
+  const dlg = $('#dlg');
+  function openDetail(id) {
+    const f = FIGS.find(x => x.id === id); const it = col.items[id] || {};
+    const rels = f.releases.length ? `<div class="tbl"><table><thead><tr><th>Barcode (JAN)</th><th>Retail</th><th>Date</th><th>Type</th></tr></thead><tbody>${
+      f.releases.map(r => `<tr><td class="mono">${r.jan}</td><td>${r.msrp_jpy ? '¥' + r.msrp_jpy.toLocaleString() : '—'}</td><td>${r.date || '—'}</td><td>${r.kind === 'rerun' ? 'Re-run' : '—'}</td></tr>`).join('')
+    }</tbody></table></div>` : `<p class="note">No barcodes recorded yet. Know one? Add it to data/releases.csv.</p>`;
+    const mk = marketDetail(f);
+    const chips = [DATA.lines[f.line], f.first_release ? 'Released ' + f.first_release : 'Release date not verified'].map(c => `<span class="chip">${esc(c)}</span>`).join('')
+      + (f.exclusive ? `<span class="chip ex">${esc(exLabel(f))}</span>` : '');
+    dlg.innerHTML = `<form method="dialog" id="dform">
+      <div class="dlg-head">
+        <div><h2 id="d-name">${esc(f.name_en)}</h2><div class="ja" lang="ja">${esc(f.name_ja)}</div><div class="chips">${chips}</div></div>
+        <button class="btn" value="cancel" aria-label="Close">✕</button>
+      </div>
+      <div class="dlg">
+        <div class="col side">
+          <div class="panel">
+            <div class="thumb">${thumb(f)}</div>
+            <div class="credit">${it.photo ? 'Photo: yours (kept in this browser only)' : f.image_credit ? `Photo: ${f.image_credit.url ? `<a href="${esc(safeHref(f.image_credit.url))}" target="_blank" rel="noopener">${esc(f.image_credit.label)}</a>` : esc(f.image_credit.label)}` : ''}</div>
+            <label class="btn" for="photo" style="text-align:center">${it.photo ? 'Replace my photo' : 'Add my photo'}</label>
+            <input id="photo" type="file" accept="image/*" hidden>
+            ${it.photo ? '<button type="button" class="btn" id="rmPhoto">Remove my photo</button>' : ''}
+          </div>
+          <div class="panel">
+            <div class="section-t">My copy</div>
+            <div class="mine">
+              <div class="row2">
+                <label>Owned <select id="m-owned"><option value="0">No</option><option value="1"${it.owned ? ' selected' : ''}>Yes</option></select></label>
+                <label>Wishlist <select id="m-wish"><option value="0">No</option><option value="1"${it.wish ? ' selected' : ''}>Yes</option></select></label>
+              </div>
+              <label>Price paid <input id="m-paid" value="${esc(it.paid || '')}" placeholder="e.g. ¥3,190 or $28"></label>
+              <label>Date acquired <input id="m-got" type="date" value="${esc(it.got || '')}"></label>
+              <label>Where I got it <input id="m-where" value="${esc(it.where || '')}" placeholder="e.g. e-STORE, Mandarake"></label>
+              <label>Notes <textarea id="m-notes" rows="3" placeholder="Condition, box, gift from…">${esc(it.notes || '')}</textarea></label>
+            </div>
+          </div>
+        </div>
+        <div class="col mkt">${mk.market ? `<div class="panel">${mk.market}</div>` : ''}
+          <div class="panel">
+            <div class="section-t">Details</div>
+            <dl class="kv">
+              ${f.aka && f.aka.length ? `<dt>Also known as</dt><dd>${esc(f.aka.join(', '))}</dd>` : ''}
+              <dt>Line</dt><dd>${esc(DATA.lines[f.line])}</dd>
+              <dt>First release</dt><dd>${esc(f.first_release || 'Not yet verified')}</dd>
+              ${f.exclusive ? `<dt>Availability</dt><dd>${esc(exLabel(f))}</dd>` : ''}
+              ${f.variant ? `<dt>Variant</dt><dd>${esc(f.variant)}</dd>` : ''}
+              ${f.notes ? `<dt>Notes</dt><dd>${esc(f.notes)}</dd>` : ''}
+            </dl>
+            <div class="section-t">Known releases</div>
+            ${rels}
+            <div class="section-t">Sources</div>
+            <div class="srcs">${f.sources.map(s => `<a href="${esc(safeHref(s.url))}" target="_blank" rel="noopener">${esc(s.label)}</a>`).join('')}</div>
+          </div>
+        </div>
+        <div class="col info">
+          ${mk.buy ? `<div class="panel">${mk.buy}</div>` : ''}
+        </div>
+      </div>
+      <div class="dlg-foot"><button class="btn" value="cancel">Cancel</button><button class="btn primary" value="save" id="dsave">Save</button></div>
+    </form>`;
+    dlg.dataset.id = id;
+    $('#photo', dlg).addEventListener('change', async e => {
+      const file = e.target.files[0]; if (!file) return;
+      try { const url = await shrink(file, 480); const t = item(id); t.photo = url; save(); toast('Photo saved'); openDetail(id); refreshCard(id); }
+      catch (err) { toast('That image could not be read. Try a JPG or PNG.'); }
+    });
+    $('#rmPhoto', dlg)?.addEventListener('click', () => { const t = item(id); delete t.photo; prune(id); save(); openDetail(id); refreshCard(id); });
+    if (!dlg.open) dlg.showModal();
+  }
+  function marketDetail(f) {
+    const p = P(f.id);
+    if (!p) return PR ? { market: `<div class="section-t">Market</div><p class="note">No sales or listings matched to this figure yet.</p>`,
+      buy: `<div class="section-t">Where to buy</div><p class="note">Live listings: ${searchLinks(f)}. From abroad, on Buyee: ${buyeeLinks(f)} (<a href="#" data-abroad>how to buy from abroad</a>).</p>${ebayLinks(f)}` } : { market: '', buy: '' };
+    const jp = src => JP_ONLY[src] ? ' · ships in Japan only' : '';
+    const buy = [...(p.shops || []).map(s => [s[1], `<a href="${esc(safeHref(s[3]))}" target="_blank" rel="noopener">${esc(srcName(s[0]))}</a> <span class="note">${s[2] === 'pre' ? 'pre-order' : 'in stock'}${jp(s[0])}</span>`]),
+                 ...(p.asks || []).slice(0, 2).map(a => [a[1], `${esc(srcName(a[0]))} <span class="note">second-hand${a[2] === 'new' ? ', unopened' : ''}, seen ${esc(PR.snapshot || '')}${jp(a[0])}</span>`])]
+      .sort((a, b) => a[0] - b[0]).slice(0, 8).map(([pr, h]) => `<div class="row"><span>${h}</span><span>${yenf(pr)}</span></div>`).join('');
+    const market = `<div class="section-t">Market</div>
+      <dl class="kv">
+        <dt>Guide price</dt><dd>${p.guide ? `<b>${yenf(p.guide)}</b> ${usd(p.guide)} ${chgHtml(p.chg)} <span class="note">median, last ${p.basis} days</span>` : 'No sales in the last 90 days'}</dd>
+        ${p.n90 ? `<dt>Sales</dt><dd>${p.n30} in 30 days, ${p.n90} in 90 days</dd>` : ''}
+        ${p.low != null ? `<dt>Range (90 d)</dt><dd>${yenf(p.low)} – ${yenf(p.high)}</dd>` : ''}
+        ${p.new || p.used ? `<dt>New / used</dt><dd>${yenf(p.new)} / ${yenf(p.used)}</dd>` : ''}
+        ${p.last ? `<dt>Last sale</dt><dd>${yenf(p.last[1])} on ${esc(srcName(p.last[2]))}, ${esc(p.last[0])}</dd>` : ''}
+      </dl>
+      ${chart(p.weeks)}
+      ${salesList(f, p)}`;
+    const buyHtml = `<div class="section-t">Where to buy</div>
+      ${buy ? `<div class="buy">${buy}</div>` : '<p class="note">No shop has it in stock or on pre-order right now.</p>'}
+      <p class="note">${p.n_asks ? `${p.n_asks} second-hand listings on the last check. ` : ''}Live listings: ${searchLinks(f)}</p>
+      <p class="note">Outside Japan? Search on Buyee: ${buyeeLinks(f)}. Yahoo!, Mercari and the e-STORE only ship within Japan; <a href="#" data-abroad>how to buy from abroad</a> covers the e-STORE, Mercari's Global app and the fees. Hobby Search ships worldwide.</p>
+      ${ebayLinks(f)}`;
+    return { market, buy: buyHtml };
+  }
+  // "how to buy from abroad" links anywhere on the page (also inside the figure window)
+  document.addEventListener('click', e => {
+    const a = e.target.closest('[data-abroad]'); if (!a) return;
+    e.preventDefault(); const g = $('#abroad'); if (!g.open) g.showModal();
+  });
+  dlg.addEventListener('close', () => {
+    if (dlg.returnValue !== 'save') return;
+    const id = dlg.dataset.id; const t = item(id);
+    t.owned = $('#m-owned', dlg).value === '1'; t.wish = $('#m-wish', dlg).value === '1';
+    t.paid = $('#m-paid', dlg).value.trim(); t.got = $('#m-got', dlg).value; t.where = $('#m-where', dlg).value.trim(); t.notes = $('#m-notes', dlg).value.trim();
+    for (const k of ['paid', 'got', 'where', 'notes']) if (!t[k]) delete t[k];
+    prune(id); save(); refreshCard(id); toast('Saved');
+  });
+
+  function shrink(file, max) {
+    return new Promise((res, rej) => {
+      const r = new FileReader();
+      r.onerror = rej;
+      r.onload = () => { const img = new Image(); img.onerror = rej; img.onload = () => {
+        const s = Math.min(1, max / Math.max(img.width, img.height)); const c = document.createElement('canvas');
+        c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); res(c.toDataURL('image/jpeg', 0.82));
+      }; img.src = r.result; };
+      r.readAsDataURL(file);
+    });
+  }
+
+  // ---- export / import ----
+  const payload = () => JSON.stringify({ app: 'metal-gallery-tracker', exported: new Date().toISOString(), data_version: DATA.generated, ...col }, null, 1);
+  $('#exportBtn').addEventListener('click', () => {
+    try {
+      const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([payload()], { type: 'application/json' }));
+      a.download = `metaldex-collection-${new Date().toISOString().slice(0, 10)}.json`; document.body.append(a); a.click(); a.remove();
+      toast('Collection exported');
+    } catch (e) { toast('Download blocked here. Use Copy collection instead.'); }
+  });
+  $('#copyBtn').addEventListener('click', () => {
+    navigator.clipboard.writeText(payload()).then(() => toast('Collection copied to clipboard'), () => toast('Clipboard blocked here. Use Export instead.'));
+  });
+  $('#importFile').addEventListener('change', async e => {
+    const file = e.target.files[0]; if (!file) return;
+    try {
+      const obj = JSON.parse(await file.text());
+      if (!obj.items || typeof obj.items !== 'object') throw new Error();
+      const known = new Set(FIGS.map(f => f.id)); let n = 0;
+      for (const [id, v] of Object.entries(obj.items)) if (known.has(id)) { col.items[id] = { ...(col.items[id] || {}), ...v }; n++; }
+      save(); render(); toast(`Imported ${n} figure${n === 1 ? '' : 's'}`);
+    } catch (err) { toast('That file is not a MetalDex collection export.'); }
+    e.target.value = '';
+  });
+
+  let tt; function toast(msg) { document.querySelector('.toast')?.remove(); const t = Object.assign(document.createElement('div'), { className: 'toast', role: 'status', textContent: msg }); document.body.append(t); clearTimeout(tt); tt = setTimeout(() => t.remove(), 2600); }
+
+  { const pi = $('#photoIssue'); pi.href = pi.getAttribute('href').replace(/\/?$/, '/issues/new/choose'); }
+  $('#foot-data').innerHTML = `Catalogue: ${FIGS.length} entries, data updated ${esc(DATA.generated)}.${PR ? ` Prices updated ${esc(PR.generated)}.` : ''} Spot a missing figure, a new release or a mistake? <a href="${REPO}/issues/new/choose" target="_blank" rel="noopener">Let us know</a>.`;
+  render();
+})();
+</script>
+</body>
+</html>

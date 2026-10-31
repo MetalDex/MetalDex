@@ -1,0 +1,53 @@
+name: Wrong match (a sale or listing counted for the wrong figure)
+description: Opened from "Wrong figure?" next to a sale in the tracker; the first fields are filled in for you
+title: "Wrong match: <figure> / <listing id>"
+labels: [wrong-match]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks! Each price is the median of real sales matched to a figure by their listing titles. If a sale isn't
+        this figure (a different figure or version, another toy line, a set, a stand, a keychain...), tell us below.
+        Confirmed reports go into `prices/data/corrections.csv`, which every update applies.
+  - type: input
+    id: figure
+    attributes:
+      label: Counted for
+      description: The figure the tracker counted it for
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Site
+    validations:
+      required: true
+  - type: input
+    id: listing
+    attributes:
+      label: Listing id
+    validations:
+      required: true
+  - type: input
+    id: seen
+    attributes:
+      label: Date, price and listing title as shown in the tracker
+  - type: dropdown
+    id: verdict
+    attributes:
+      label: What is it really?
+      options:
+        - A different figure or version (say which below)
+        - Not a single Metallic Monsters Gallery figure (set, other toy line, stand, keychain, damaged...)
+        - Not sure, please check
+    validations:
+      required: true
+  - type: input
+    id: should_be
+    attributes:
+      label: The right figure, if you know it
+      description: Name or figure id, e.g. "King slime (40th Anniversary)"
+  - type: textarea
+    id: details
+    attributes:
+      label: Anything else

@@ -1,0 +1,23 @@
+name: Photo removal or credit change
+description: For owners of a photo shown in the tracker
+title: "Photo removal/credit: <figure name>"
+labels: [photo]
+body:
+  - type: input
+    id: figure
+    attributes:
+      label: Which figure's photo?
+    validations:
+      required: true
+  - type: dropdown
+    id: want
+    attributes:
+      label: What would you like?
+      options: [Remove the photo, Change the credit]
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: The credit you'd like, or anything else we should know.

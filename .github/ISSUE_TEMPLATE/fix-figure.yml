@@ -1,0 +1,31 @@
+name: Fix a figure
+description: Something about a listed figure is wrong (name, date, photo, sales channel, notes)
+title: "Fix: <figure name>"
+labels: [fix]
+body:
+  - type: input
+    id: figure
+    attributes:
+      label: Which figure?
+      description: The name as shown in the tracker
+    validations:
+      required: true
+  - type: dropdown
+    id: what
+    attributes:
+      label: What's wrong?
+      multiple: true
+      options: [Name, Release date, Photo, Where it's sold / exclusive, Notes, Something else]
+    validations:
+      required: true
+  - type: textarea
+    id: should_be
+    attributes:
+      label: What it should be
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      description: A link that shows the right information, if you have one

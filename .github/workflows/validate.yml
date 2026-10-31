@@ -1,0 +1,30 @@
+name: Validate data
+# Runs on every push and every proposed change (pull request). It only reads the repo: no secrets, no write access.
+# Never switch this to pull_request_target: that would run outside contributors' changes with write access.
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      # actions are pinned to exact versions; Dependabot proposes updates (.github/dependabot.yml)
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with: { python-version: "3.12" }
+      - name: Catalogue is valid (ids, dates, links, photo sites, no HTML in text)
+        run: KEEP_DATE=1 python3 scripts/build.py
+      - name: Built files are up to date
+        # on the main branch only
+        if: github.event_name == 'push'
+        run: git diff --exit-code docs/ || (echo "Run python3 scripts/build.py and commit docs/" && exit 1)
+      - name: Price matcher tests (Python and JavaScript)
+        run: python3 prices/tests/test_matcher.py
+      - name: Review the proposed change
+        if: github.event_name == 'pull_request'
+        env:
+          OWNER: ${{ (github.event.pull_request.user.login == github.repository_owner || github.event.pull_request.user.login == 'dependabot[bot]') && '--owner' || '' }}
+        run: python3 scripts/review_changes.py origin/${{ github.base_ref }} $OWNER

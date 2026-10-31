@@ -1,0 +1,48 @@
+name: New figure or release
+description: A figure that isn't listed yet, a newly announced design, or a re-release
+title: "New: <figure name>"
+labels: [new-figure]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks! Fill in what you know; blanks are fine. Every new figure is checked before it's added.
+  - type: input
+    id: name
+    attributes:
+      label: Figure name
+      description: English and/or Japanese name, e.g. "Metal slime (40th Anniversary) / メタルスライム"
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is it?
+      options:
+        - A figure that's missing from the list
+        - A newly announced figure (not out yet)
+        - A re-release of a figure that's already listed
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Release date
+      description: Or the announced date, if it isn't out yet
+  - type: input
+    id: where
+    attributes:
+      label: Where is it sold?
+      description: General shops, Square Enix e-STORE, a lottery prize, an event...
+  - type: textarea
+    id: sources
+    attributes:
+      label: Source
+      description: A link to an announcement, shop page or article, and a photo link if you have one
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Anything else

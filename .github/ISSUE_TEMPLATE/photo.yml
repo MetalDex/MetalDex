@@ -1,0 +1,33 @@
+name: Photo submission
+description: Share your own photo of a figure (you'll be credited on it)
+title: "Photo: <figure name>"
+labels: [photo]
+body:
+  - type: input
+    id: figure
+    attributes:
+      label: Which figure?
+      description: English or Japanese name, or the id from the tracker (e.g. liquid-metal-slime-40th)
+    validations:
+      required: true
+  - type: textarea
+    id: photo
+    attributes:
+      label: Photo
+      description: Drag the image in here. One figure, plain background, at least 600 px works best.
+    validations:
+      required: true
+  - type: input
+    id: credit
+    attributes:
+      label: Credit as
+      description: Name to show under the photo, and optionally a link (your site, Instagram…)
+    validations:
+      required: true
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Permission
+      options:
+        - label: I took this photo, and it can be shown in this project under CC BY 4.0 with the credit above.
+          required: true

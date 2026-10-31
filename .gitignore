@@ -1,0 +1,10 @@
+__pycache__/
+.DS_Store
+*.pyc
+# local photo copies (scripts/cache_images.py); contributed photos are kept
+docs/img/*
+!docs/img/contrib/
+*.failed.json
+# collector output and run logs stay on the maintainer's computer
+prices/data/raw/
+prices/data/logs/
