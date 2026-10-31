@@ -1,12 +1,12 @@
 {
- "date": "2026-10-28",
+ "date": "2026-10-30",
  "base": "JPY",
  "source": "European Central Bank via frankfurter.dev",
  "rates": {
-  "CNY": 0.042202,
-  "EUR": 0.0056863,
-  "GBP": 0.0047643,
-  "KRW": 8.486,
-  "USD": 0.0063306
+  "USD": 0.0063593,
+  "EUR": 0.0056922,
+  "GBP": 0.0047461,
+  "KRW": 8.4913,
+  "CNY": 0.042308
  }
 }
