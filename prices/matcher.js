@@ -74,7 +74,7 @@ function makeMatcher(D) {
     if (id.startsWith('item-loto') && R.loto_both && R.loto_both.test(full)) return { status: 'lot', id: null, ids, cond };
     let left = rest;
     for (const tk of toks) left = left.replace(new RegExp(tk.source, 'g'), ' ');
-    if (toks.some(tk => R.anniv.test(tk.source))) left = left.replace(new RegExp(R.goldish.source, 'g'), ' ');
+    if (toks.some(tk => R.anniv.test(tk.source)) || (D.gold_finish || []).includes(id)) left = left.replace(new RegExp(R.goldish.source, 'g'), ' ');
     if (R.loose.test(left)) return { status: 'uncertain', id, cond };
     return { status: 'ok', id, cond };
   }

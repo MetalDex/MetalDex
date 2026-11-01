@@ -37,6 +37,8 @@ SERIES = re.compile(r"めたりっく(もんすたー|あいてむ)|めたりっ
 EXCLUDE = re.compile(
     r"じゃんく|junk|破損|欠品|部品取り|ぱーつのみ|箱のみ|空箱|外箱のみ|たぐのみ|台座のみ|説明書のみ|"
     r"りぺいんと|repaint|かすたむ|改造|ぎゃらりーhd|hd\d|ちゃぷたー|くりすたるもんすたーず|"
+    # monsters only made in the older Monsters Gallery line (titled \"メタリック モンスターズギャラリー\" for its metallic colour)
+    r"ぼーんふぁいたー|"
     r"きーほるだー|すとらっぷ|こいん|ぶらいとあーつ|そふび|ぬいぐるみ|一番くじ|がちゃ|ぽーちのみ|写真のみ|ぽすたー|"
     # display stands sold on their own (third-party stands for the Items Gallery swords and shields);
     # a figure listed "with stand" (台座付き / 台座あり) is still a figure
@@ -55,6 +57,8 @@ ANNIV = re.compile(r"[0-9]+周年|[0-9]+th")
 # The Loto equipment comes as two products (sword & shield; armour & helm): a title naming parts of both is a lot.
 LOTO_BOTH = re.compile(r"(剣|盾).*(鎧|兜)|(鎧|兜).*(剣|盾)")
 GOLDISH = re.compile(r"ごーるど|gold|金色|金の|きんいろ|ろーずごーるど|あんてぃーく")
+# Figures with no gold version, where sellers write \"ゴールド\" for the normal metallic finish.
+GOLD_IS_FINISH = {"onion-king", "great-dragon"}
 
 NEW_WORDS = re.compile(r"未開封|新品|未使用|unopened|brandnew")
 USED_WORDS = re.compile(r"中古|開封済|開封品|used|現状品|ゆーずど|難あり")
@@ -284,7 +288,7 @@ class Matcher:
         left = rest
         for tk in toks:
             left = tk.sub(" ", left)
-        if any(ANNIV.search(tk.pattern) for tk in toks):
+        if any(ANNIV.search(tk.pattern) for tk in toks) or fid in GOLD_IS_FINISH:
             left = GOLDISH.sub(" ", left)
         if LOOSE_VARIANT.search(left):
             return {"status": "uncertain", "id": fid, "cond": cond}
@@ -299,6 +303,7 @@ def export(m: "Matcher") -> dict:
         "boiler": m.boiler,
         "tokens": TOKENS,
         "shadows": SHADOWS,
+        "gold_finish": sorted(GOLD_IS_FINISH),
         "jan": {r["jan"]: f["id"] for f in m.figs.values() for r in f.get("releases", [])},
         "re": {"series": SERIES.pattern, "exclude": EXCLUDE.pattern, "lot": LOT.pattern, "loose": LOOSE_VARIANT.pattern, "anniv": ANNIV.pattern, "loto_both": LOTO_BOTH.pattern,
                "goldish": GOLDISH.pattern, "new": NEW_WORDS.pattern, "used": USED_WORDS.pattern},
