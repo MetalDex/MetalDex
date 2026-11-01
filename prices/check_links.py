@@ -14,6 +14,7 @@ Yahoo! Auctions. Standard library only.
 import argparse
 import csv
 import json
+import re
 import sys
 import time
 from datetime import date, timedelta
@@ -38,8 +39,16 @@ def listing_url(source, lid):
         return (f"https://paypayfleamarket.yahoo.co.jp/item/{lid}" if lid.startswith("z")
                 else f"https://auctions.yahoo.co.jp/jp/auction/{lid}")
     if source == "mercari":
-        return f"https://jp.mercari.com/item/{lid}"
+        # Mercari Shops items have letter ids and live under /shops/product/
+        return (f"https://jp.mercari.com/item/{lid}" if re.fullmatch(r"m\d+", lid)
+                else f"https://jp.mercari.com/shops/product/{lid}")
     return None
+
+
+def browser_only(source, lid):
+    """Mercari and Yahoo! Flea Market build their pages in the browser: a script sees the same empty shell
+    (with a "not found" template in it) for live and removed items, so only a browser check can tell."""
+    return source == "mercari" or (source == "yahoo" and lid.startswith("z"))
 
 
 def fig_of():
@@ -85,11 +94,26 @@ def check(url):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--report", action="store_true")
+    ap.add_argument("--browser-due", action="store_true",
+                    help="print the Mercari / Yahoo! Flea Market pages waiting for a browser check, one URL per line")
+    ap.add_argument("--mark", nargs=2, metavar=("ok|dead", "URLS_FILE"),
+                    help="record browser-check results: a file of listing page URLs, one per line")
     a = ap.parse_args()
     from prices.aggregate import corrections, read_csv
     links = json.loads(LINKS.read_text(encoding="utf-8")) if LINKS.exists() else {}
     want = wanted(read_csv(DATA / "sales.csv"), corrections(), links)
     today = date.today()
+    if a.mark:
+        res, path = a.mark
+        assert res in ("ok", "dead")
+        by_url = {listing_url(s, l): f"{s}:{l}" for s, l in want}
+        n = 0
+        for u in Path(path).read_text(encoding="utf-8").split():
+            if u in by_url:
+                links[by_url[u]] = [res, today.isoformat()]; n += 1
+        LINKS.write_text(json.dumps(dict(sorted(links.items())), indent=0, ensure_ascii=False), encoding="utf-8")
+        print(f"marked {n} as {res}")
+        return 0
     due = []
     for src, lid in want:
         st = links.get(f"{src}:{lid}")
@@ -105,10 +129,16 @@ def main():
         rank[(s_, l_)] = (f_ in linked, seen.get(f_, 0))
         seen[f_] = seen.get(f_, 0) + 1
     due.sort(key=lambda sl: rank[sl])
+    if a.browser_due:
+        print("\n".join(listing_url(s, l) for s, l in due if browser_only(s, l)))
+        return 0
+    n_browser = sum(browser_only(s, l) for s, l in due)
+    due = [sl for sl in due if not browser_only(*sl)]
     backlog = len(due)
     due = due[:MAX_PER_RUN]
     print(f"{len(want)} recent sales to link, {ok} confirmed working, {backlog} to check"
-          + (f" ({len(due)} this run)" if backlog > len(due) else ""))
+          + (f" ({len(due)} this run)" if backlog > len(due) else "")
+          + (f"; {n_browser} Mercari / Yahoo! Flea Market pages wait for the weekly browser check" if n_browser else ""))
     if a.report:
         return 0
     n_ok = n_dead = n_err = 0
