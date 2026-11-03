@@ -39,7 +39,9 @@ which `aggregate.py` applies on every run, so the fix sticks through later updat
 the tracker shows the result (October 2026: 199 of 200 right; the one miss was fixed in the matcher).
 
 **Guide price** = median sale over the last 30 days (90 days when a figure had fewer than 5 recent sales), after
-dropping sales below a third or above three times the figure's usual price. Buy-it-now listings below 40% of the
+dropping sales below a third or above three times the figure's usual price. A sale only counts as an outlier when
+it is that far off both the figure's overall median and its price at the time (the median of that sale and the 4
+sales closest to it in time), so a figure whose price climbs or falls fast keeps its newest sales. Buy-it-now listings below 40% of the
 guide price are hidden as probably not the figure.
 
 ## Data files (`prices/data/`)

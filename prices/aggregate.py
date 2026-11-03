@@ -5,7 +5,8 @@
 
 For every figure:
   guide    median sale price over the last 30 days (90 days when there are fewer than 5 recent sales),
-           outliers removed
+           outliers removed (under 1/3 or over 3x both the figure's median and
+           the median of the sale and the 4 sales closest to it in time)
   chg      % change: median of the last 30 days vs. the 60 days before (needs 3+ sales in each)
   n30/n90  number of sales
   new/used medians by condition, low/high (10th/90th percentile), last sale
@@ -27,6 +28,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 DATA = HERE / "data"
 OUT = ROOT / "docs" / "data" / "prices.json"
+OUTLIER_NEIGHBOURS = 4  # sales nearest in time that, with the sale itself, set its "typical price"
 
 SOURCES = {
     "yahoo": ("Yahoo! Auctions", "https://auctions.yahoo.co.jp/jp/auction/{id}"),
@@ -112,14 +114,24 @@ def main(today: date | None = None):
     for r in sales:
         by_fig.setdefault(r["figure_id"], []).append(r)
 
-    # outliers: drop sales below a third or above three times the figure's overall median
+    # outliers: drop a sale only when it is below a third or above three times BOTH the figure's overall median and
+    # its price at the time (the median of the sale and the 4 sales closest to it in time). Checking both means a
+    # figure whose price really climbs or falls keeps its newest sales, and a run of cheap sales can't push out
+    # the normal ones.
     clean = {}
     dropped = 0
     outliers = set()
     for fid, rows in by_fig.items():
-        m = statistics.median(float(r["price_jpy"]) for r in rows)
-        keep = [r for r in rows if m / 3 <= float(r["price_jpy"]) <= m * 3]
-        outliers |= {id(r) for r in rows if not (m / 3 <= float(r["price_jpy"]) <= m * 3)}
+        days = [(date.fromisoformat(r["sold_on"]), float(r["price_jpy"])) for r in rows]
+        overall = statistics.median(p for _, p in days)
+        keep = []
+        for i, (r, (d, p)) in enumerate(zip(rows, days)):
+            others = sorted((abs((e - d).days), j) for j, (e, _) in enumerate(days) if j != i)
+            local = statistics.median([p] + [days[j][1] for _, j in others[:OUTLIER_NEIGHBOURS]])
+            if any(m / 3 <= p <= m * 3 for m in (overall, local)):
+                keep.append(r)
+            else:
+                outliers.add(id(r))
         dropped += len(rows) - len(keep)
         clean[fid] = keep
 
