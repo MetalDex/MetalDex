@@ -281,7 +281,7 @@
   {
    "section": "Items",
    "name": "Chest, keys & medal",
-   "count": 5
+   "count": 7
   },
   {
    "section": "Items",
@@ -319,7 +319,7 @@
   "bundle": "Bundled with a game edition",
   "prize": "Prize / campaign only (never sold)"
  },
- "count": 224,
+ "count": 226,
  "figures": [
   {
    "id": "slime",
@@ -9959,16 +9959,49 @@
    "order": 200
   },
   {
+   "id": "item-magic-key-2027",
+   "name_ja": "魔法の鍵",
+   "name_en": "Magic key (2027 edition)",
+   "line": "items",
+   "variant": "2027 edition",
+   "exclusive": null,
+   "first_release": "2027-01-26",
+   "hs_id": null,
+   "image": "https://store.jp.square-enix.com/img/goods/S/MW36295_00S.jpg",
+   "notes": "New sculpt released with the Thief's key (e-STORE MW36295, ¥2,750, W23×D65×H5mm): silver key with a triangular three-ring handle and no cord. The older まほうのかぎ has a round handle on a leather cord.",
+   "aka": [],
+   "releases": [],
+   "image_credit": {
+    "label": "© ARMOR PROJECT/BIRD STUDIO/SQUARE ENIX (official photo, Square Enix e-STORE)",
+    "url": "https://store.jp.square-enix.com/"
+   },
+   "remote_image": "https://store.jp.square-enix.com/img/goods/S/MW36295_00S.jpg",
+   "sources": [
+    {
+     "label": "Dragon Quest Wiki",
+     "url": "https://dragon-quest.org/wiki/Magic_Key"
+    },
+    {
+     "label": "store.jp.square-enix.com",
+     "url": "https://store.jp.square-enix.com/estore/g/gMW36295/"
+    }
+   ],
+   "wiki": "https://dragon-quest.org/wiki/Magic_Key",
+   "section": "Items",
+   "group": "Chest, keys & medal",
+   "order": 201
+  },
+  {
    "id": "item-thiefs-key",
    "name_ja": "とうぞくのかぎ",
    "name_en": "Thief's key",
    "line": "items",
    "variant": null,
    "exclusive": null,
-   "first_release": "2027-05-15",
+   "first_release": "2027-01-26",
    "hs_id": null,
    "image": "https://store.jp.square-enix.com/img/goods/S/MW36294_00S.jpg",
-   "notes": "Announced October 2026 for May 2027 (¥2,750 on the e-STORE), alongside re-runs of the Magic key and Ultimate key.",
+   "notes": "Announced October 2026 for January 2027 (¥2,750 on the e-STORE), alongside new 2027 editions of the Magic key and Ultimate key.",
    "aka": [
     "盗賊の鍵"
    ],
@@ -9991,7 +10024,7 @@
    "wiki": "https://dragon-quest.org/wiki/Thief's_Key",
    "section": "Items",
    "group": "Chest, keys & medal",
-   "order": 201
+   "order": 202
   },
   {
    "id": "item-ultimate-key",
@@ -10040,7 +10073,52 @@
    "wiki": "https://dragon-quest.org/wiki/Ultimate_Key",
    "section": "Items",
    "group": "Chest, keys & medal",
-   "order": 202
+   "order": 203
+  },
+  {
+   "id": "item-ultimate-key-2027",
+   "name_ja": "最後の鍵",
+   "name_en": "Ultimate key (2027 edition)",
+   "line": "items",
+   "variant": "2027 edition",
+   "exclusive": null,
+   "first_release": "2027-01-26",
+   "hs_id": null,
+   "image": "https://store.jp.square-enix.com/img/goods/S/MW36296_00S.jpg",
+   "notes": "New sculpt released with the Thief's key (e-STORE MW36296, ¥2,750, W25×D65×H7mm): bright gold winged-eye key with a red gem and no cord. The older さいごのかぎ is antique gold on a leather cord. Not the same as the non-sale 「さいごのカギ【限定非売品】」 seen in auctions.",
+   "aka": [],
+   "releases": [
+    {
+     "jan": "4988601801591",
+     "msrp_jpy": 2750,
+     "date": "2027-01-26",
+     "kind": null,
+     "source": "hlj"
+    }
+   ],
+   "image_credit": {
+    "label": "© ARMOR PROJECT/BIRD STUDIO/SQUARE ENIX (official photo, Square Enix e-STORE)",
+    "url": "https://store.jp.square-enix.com/"
+   },
+   "remote_image": "https://store.jp.square-enix.com/img/goods/S/MW36296_00S.jpg",
+   "sources": [
+    {
+     "label": "Dragon Quest Wiki",
+     "url": "https://dragon-quest.org/wiki/Ultimate_Key"
+    },
+    {
+     "label": "store.jp.square-enix.com",
+     "url": "https://store.jp.square-enix.com/estore/g/gMW36296/"
+    },
+    {
+     "label": "hlj.com",
+     "url": "https://www.hlj.com/dragon-quest-metallic-items-gallery-ultimate-key-enx80159"
+    }
+   ],
+   "wiki": "https://dragon-quest.org/wiki/Ultimate_Key",
+   "section": "Items",
+   "group": "Chest, keys & medal",
+   "order": 204
   },
   {
    "id": "item-sage-stone",
@@ -10073,7 +10151,7 @@
    "wiki": "https://dragon-quest.org/wiki/Sage's_stone",
    "section": "Items",
    "group": "Key items",
-   "order": 203
+   "order": 205
   },
   {
    "id": "item-book-of-satori",
@@ -10106,7 +10184,7 @@
    "wiki": "https://dragon-quest.org/wiki/Words_of_Wisdom",
    "section": "Items",
    "group": "Key items",
-   "order": 204
+   "order": 206
   },
   {
    "id": "item-sun-stone",
@@ -10139,7 +10217,7 @@
    "wiki": "https://dragon-quest.org/wiki/Sunstone",
    "section": "Items",
    "group": "Key items",
-   "order": 205
+   "order": 207
   },
   {
    "id": "item-staff-of-rain",
@@ -10172,7 +10250,7 @@
    "wiki": "https://dragon-quest.org/wiki/Staff_of_Rain",
    "section": "Items",
    "group": "Key items",
-   "order": 206
+   "order": 208
   },
   {
    "id": "item-rainbow-drop",
@@ -10205,7 +10283,7 @@
    "wiki": "https://dragon-quest.org/wiki/Rainbow_Drop",
    "section": "Items",
    "group": "Key items",
-   "order": 207
+   "order": 209
   },
   {
    "id": "item-token-of-loto",
@@ -10238,7 +10316,7 @@
    "wiki": "https://dragon-quest.org/wiki/Mark_of_Erdrick",
    "section": "Items",
    "group": "Key items",
-   "order": 208
+   "order": 210
   },
   {
    "id": "item-mirror-of-ra",
@@ -10271,7 +10349,7 @@
    "wiki": "https://dragon-quest.org/wiki/Ra's_Mirror",
    "section": "Items",
    "group": "Key items",
-   "order": 209
+   "order": 211
   },
   {
    "id": "item-orbs-red-green",
@@ -10304,7 +10382,7 @@
    "wiki": "https://dragon-quest.org/wiki/Red_Orb",
    "section": "Items",
    "group": "Orbs",
-   "order": 210
+   "order": 212
   },
   {
    "id": "item-orbs-blue-purple",
@@ -10337,7 +10415,7 @@
    "wiki": "https://dragon-quest.org/wiki/Blue_Orb",
    "section": "Items",
    "group": "Orbs",
-   "order": 211
+   "order": 213
   },
   {
    "id": "item-orbs-silver-yellow",
@@ -10370,7 +10448,7 @@
    "wiki": "https://dragon-quest.org/wiki/Silver_Orb",
    "section": "Items",
    "group": "Orbs",
-   "order": 212
+   "order": 214
   },
   {
    "id": "item-medicinal-herb",
@@ -10415,7 +10493,7 @@
    "wiki": "https://dragon-quest.org/wiki/Medicinal_herb",
    "section": "Items",
    "group": "Consumables",
-   "order": 213
+   "order": 215
   },
   {
    "id": "item-chimaera-wing",
@@ -10452,7 +10530,7 @@
    "wiki": "https://dragon-quest.org/wiki/Chimaera_wing",
    "section": "Items",
    "group": "Consumables",
-   "order": 214
+   "order": 216
   },
   {
    "id": "item-magic-water",
@@ -10489,7 +10567,7 @@
    "wiki": "https://dragon-quest.org/wiki/Magic_water",
    "section": "Items",
    "group": "Consumables",
-   "order": 215
+   "order": 217
   },
   {
    "id": "item-loto-sword-shield",
@@ -10522,7 +10600,7 @@
    "wiki": "https://dragon-quest.org/wiki/Erdrick's_Sword",
    "section": "Items",
    "group": "Erdrick's equipment",
-   "order": 216
+   "order": 218
   },
   {
    "id": "item-loto-armour-helm",
@@ -10567,7 +10645,7 @@
    "wiki": "https://dragon-quest.org/wiki/Erdrick's_Armour",
    "section": "Items",
    "group": "Erdrick's equipment",
-   "order": 217
+   "order": 219
   },
   {
    "id": "item-loto-sword-shield-35th",
@@ -10600,7 +10678,7 @@
    "wiki": "https://dragon-quest.org/wiki/Erdrick's_Sword",
    "section": "Items",
    "group": "Erdrick's equipment",
-   "order": 218
+   "order": 220
   },
   {
    "id": "item-loto-sword-shield-40th",
@@ -10641,7 +10719,7 @@
    "wiki": "https://dragon-quest.org/wiki/Erdrick's_Sword",
    "section": "Items",
    "group": "Erdrick's equipment",
-   "order": 219
+   "order": 221
   },
   {
    "id": "item-loto-armour-helm-40th",
@@ -10682,7 +10760,7 @@
    "wiki": "https://dragon-quest.org/wiki/Erdrick's_Armour",
    "section": "Items",
    "group": "Erdrick's equipment",
-   "order": 220
+   "order": 222
   },
   {
    "id": "item-zenithian-sword-shield",
@@ -10715,7 +10793,7 @@
    "wiki": "https://dragon-quest.org/wiki/Zenithian_Sword",
    "section": "Items",
    "group": "Zenithian equipment",
-   "order": 221
+   "order": 223
   },
   {
    "id": "item-zenithian-armour-helm",
@@ -10748,7 +10826,7 @@
    "wiki": "https://dragon-quest.org/wiki/Zenithian_Armour",
    "section": "Items",
    "group": "Zenithian equipment",
-   "order": 222
+   "order": 224
   },
   {
    "id": "item-zenithian-sword-shield-40th",
@@ -10781,7 +10859,7 @@
    "wiki": "https://dragon-quest.org/wiki/Zenithian_Sword",
    "section": "Items",
    "group": "Zenithian equipment",
-   "order": 223
+   "order": 225
   },
   {
    "id": "item-zenithian-armour-helm-40th",
@@ -10814,7 +10892,7 @@
    "wiki": "https://dragon-quest.org/wiki/Zenithian_Armour",
    "section": "Items",
    "group": "Zenithian equipment",
-   "order": 224
+   "order": 226
   }
  ]
 }

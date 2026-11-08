@@ -111,8 +111,8 @@ EXTRA_NAMES = {
     "ramia": ["ラーミア"],
     "cannibox": ["人食い箱", "人喰い箱"],
     "item-treasure-chest": ["たからばこ"],
-    "item-magic-key": ["魔法の鍵", "まほうの鍵"],
-    "item-ultimate-key": ["最後の鍵", "さいごの鍵"],
+    "item-magic-key": ["まほうの鍵"],
+    "item-ultimate-key": ["さいごの鍵"],
     "item-thiefs-key": ["盗賊の鍵", "とうぞくの鍵"],
     "item-loto-sword-shield": ["ロトの剣", "ロトのつるぎ"],
     "item-loto-sword-shield-35th": ["ロトの剣", "ロトのつるぎ"],
@@ -155,7 +155,9 @@ BASE_OVERRIDE = {
 }
 
 # When both are found, the second is part of the first's name in listings (e.g. "ミミック（宝箱）").
-SHADOWS = {"mimic": ["item-treasure-chest"], "cannibox": ["item-treasure-chest"], "battle-mimic": ["item-treasure-chest"]}
+# The 2027 keys (魔法の鍵 / 最後の鍵) are new sculpts; a title naming both spellings means the older key.
+SHADOWS = {"mimic": ["item-treasure-chest"], "cannibox": ["item-treasure-chest"], "battle-mimic": ["item-treasure-chest"],
+           "item-magic-key": ["item-magic-key-2027"], "item-ultimate-key": ["item-ultimate-key-2027"]}
 
 KATA = {c: c - 0x60 for c in range(0x30A1, 0x30F7)}
 

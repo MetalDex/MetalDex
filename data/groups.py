@@ -77,7 +77,7 @@ GROUPS = [
         ("Malign vines", ["hellbaum", "hellbaum-roots-set", "rose-butler", "evil-plant"]),
     ]),
     ("Items", [
-        ("Chest, keys & medal", ["item-treasure-chest", "item-mini-medal", "item-magic-key", "item-thiefs-key", "item-ultimate-key"]),
+        ("Chest, keys & medal", ["item-treasure-chest", "item-mini-medal", "item-magic-key", "item-magic-key-2027", "item-thiefs-key", "item-ultimate-key", "item-ultimate-key-2027"]),
         ("Key items", ["item-sage-stone", "item-book-of-satori", "item-sun-stone", "item-staff-of-rain",
                        "item-rainbow-drop", "item-token-of-loto", "item-mirror-of-ra"]),
         ("Orbs", ["item-orbs-red-green", "item-orbs-blue-purple", "item-orbs-silver-yellow"]),
