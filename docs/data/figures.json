@@ -328,10 +328,10 @@
    "line": "mmg",
    "variant": null,
    "exclusive": null,
-   "first_release": "2006",
+   "first_release": "2004",
    "hs_id": "10135940",
    "image": "https://www.1999.co.jp/itbig13/10135940.jpg",
-   "notes": "Series No.1. Many re-runs. Metal Dracky's collector guide says the line began in 2004; earliest release dates are still unverified.",
+   "notes": "Series No.1. Many re-runs. First released 2004–2005 in a small white box with a plastic blister (Metal Dracky's guide; exact year per figure not given).",
    "aka": [],
    "releases": [
     {
@@ -392,10 +392,10 @@
    "line": "mmg",
    "variant": null,
    "exclusive": null,
-   "first_release": "2007-05-26",
+   "first_release": "2004",
    "hs_id": "10041182",
    "image": "https://www.1999.co.jp/itbig04/10041182.jpg",
-   "notes": "Series No.4",
+   "notes": "Series No.4. First released 2004–2005 in a small white box with a plastic blister (Metal Dracky's guide; exact year per figure not given).",
    "aka": [],
    "releases": [
     {
@@ -438,6 +438,10 @@
     {
      "label": "Square Enix e-STORE",
      "url": "https://store.jp.square-enix.com/estore/e/edragonquest-figure/"
+    },
+    {
+     "label": "metalfigurecollector.com",
+     "url": "https://metalfigurecollector.com/dragon-quest-metallic-monsters-gallery/"
     }
    ],
    "wiki": "https://dragon-quest.org/wiki/Metal_slime",
@@ -1105,10 +1109,10 @@
    "line": "mmg",
    "variant": null,
    "exclusive": null,
-   "first_release": "2006",
+   "first_release": "2004",
    "hs_id": "10041186",
    "image": "https://www.1999.co.jp/itbig04/10041186.jpg",
-   "notes": "Series No.6",
+   "notes": "Series No.6. First released 2004–2005 in a small white box with a plastic blister (Metal Dracky's guide; exact year per figure not given).",
    "aka": [],
    "releases": [
     {
@@ -1151,6 +1155,10 @@
     {
      "label": "Square Enix e-STORE",
      "url": "https://store.jp.square-enix.com/estore/e/edragonquest-figure/"
+    },
+    {
+     "label": "metalfigurecollector.com",
+     "url": "https://metalfigurecollector.com/dragon-quest-metallic-monsters-gallery/"
     }
    ],
    "wiki": "https://dragon-quest.org/wiki/King_slime",
@@ -1165,10 +1173,10 @@
    "line": "mmg",
    "variant": null,
    "exclusive": null,
-   "first_release": "2006",
+   "first_release": "2004",
    "hs_id": "10095273",
    "image": "https://www.1999.co.jp/itbig09/10095273.jpg",
-   "notes": "Series No.3 Crown colour differs between production runs.",
+   "notes": "Series No.3 Crown colour differs between production runs. First released 2004–2005 in a small white box with a plastic blister (Metal Dracky's guide; exact year per figure not given).",
    "aka": [],
    "releases": [
     {
@@ -1539,10 +1547,10 @@
    "line": "mmg",
    "variant": null,
    "exclusive": null,
-   "first_release": "2007-05-26",
+   "first_release": "2004",
    "hs_id": "10041184",
    "image": "https://www.1999.co.jp/itbig04/10041184.jpg",
-   "notes": "Series No.5",
+   "notes": "Series No.5. First released 2004–2005 in a small white box with a plastic blister (Metal Dracky's guide; exact year per figure not given).",
    "aka": [
     "Metabble",
     "Hagure Metal"
@@ -1588,6 +1596,10 @@
     {
      "label": "Square Enix e-STORE",
      "url": "https://store.jp.square-enix.com/estore/e/edragonquest-figure/"
+    },
+    {
+     "label": "metalfigurecollector.com",
+     "url": "https://metalfigurecollector.com/dragon-quest-metallic-monsters-gallery/"
     }
    ],
    "wiki": "https://dragon-quest.org/wiki/Liquid_metal_slime",
@@ -1666,10 +1678,10 @@
    "line": "mmg",
    "variant": null,
    "exclusive": null,
-   "first_release": "2006",
+   "first_release": "2004",
    "hs_id": "10300450",
    "image": "https://www.1999.co.jp/itbig30/10300450.jpg",
-   "notes": "Series No.2",
+   "notes": "Series No.2. First released 2004–2005 in a small white box with a plastic blister (Metal Dracky's guide; exact year per figure not given).",
    "aka": [
     "Babble"
    ],
@@ -1714,6 +1726,10 @@
     {
      "label": "Square Enix e-STORE",
      "url": "https://store.jp.square-enix.com/estore/e/edragonquest-figure/"
+    },
+    {
+     "label": "metalfigurecollector.com",
+     "url": "https://metalfigurecollector.com/dragon-quest-metallic-monsters-gallery/"
     }
    ],
    "wiki": "https://dragon-quest.org/wiki/Bubble_slime",
@@ -3589,7 +3605,7 @@
    "first_release": "2006-11",
    "hs_id": "10052673",
    "image": "https://www.1999.co.jp/itbig05/10052673.jpg",
-   "notes": "Series No.7",
+   "notes": "Series No.7. First released 2006 in a small white box with a plastic blister (Metal Dracky's guide).",
    "aka": [],
    "releases": [
     {
@@ -3628,6 +3644,10 @@
     {
      "label": "Sootang",
      "url": "https://www.sootang.jp/collections/series_metalic-monsters-garelly"
+    },
+    {
+     "label": "metalfigurecollector.com",
+     "url": "https://metalfigurecollector.com/dragon-quest-metallic-monsters-gallery/"
     }
    ],
    "wiki": "https://dragon-quest.org/wiki/Slime_knight",
@@ -3645,7 +3665,7 @@
    "first_release": "2006-11",
    "hs_id": "10052674",
    "image": "https://www.1999.co.jp/itbig05/10052674.jpg",
-   "notes": "Series No.8",
+   "notes": "Series No.8. First released 2006 in a small white box with a plastic blister (Metal Dracky's guide).",
    "aka": [
     "Metal Rider"
    ],
@@ -3686,6 +3706,10 @@
     {
      "label": "Sootang",
      "url": "https://www.sootang.jp/collections/series_metalic-monsters-garelly"
+    },
+    {
+     "label": "metalfigurecollector.com",
+     "url": "https://metalfigurecollector.com/dragon-quest-metallic-monsters-gallery/"
     }
    ],
    "wiki": "https://dragon-quest.org/wiki/Metal_slime_knight",
@@ -3798,7 +3822,7 @@
    "first_release": "2006-11",
    "hs_id": "10052675",
    "image": "https://www.1999.co.jp/itbig05/10052675.jpg",
-   "notes": "Series No.9",
+   "notes": "Series No.9. First released 2006 in a small white box with a plastic blister (Metal Dracky's guide).",
    "aka": [],
    "releases": [
     {
@@ -3841,6 +3865,10 @@
     {
      "label": "Square Enix e-STORE",
      "url": "https://store.jp.square-enix.com/estore/e/edragonquest-figure/"
+    },
+    {
+     "label": "metalfigurecollector.com",
+     "url": "https://metalfigurecollector.com/dragon-quest-metallic-monsters-gallery/"
     }
    ],
    "wiki": "https://dragon-quest.org/wiki/Chimaera",
@@ -3918,7 +3946,7 @@
    "first_release": "2006-11",
    "hs_id": "10052676",
    "image": "https://www.1999.co.jp/itbig05/10052676.jpg",
-   "notes": "Series No.10",
+   "notes": "Series No.10. First released 2006 in a small white box with a plastic blister (Metal Dracky's guide).",
    "aka": [],
    "releases": [
     {
@@ -3954,6 +3982,10 @@
     {
      "label": "Square Enix e-STORE",
      "url": "https://store.jp.square-enix.com/estore/e/edragonquest-figure/"
+    },
+    {
+     "label": "metalfigurecollector.com",
+     "url": "https://metalfigurecollector.com/dragon-quest-metallic-monsters-gallery/"
     }
    ],
    "wiki": "https://dragon-quest.org/wiki/Metal_chimaera",
@@ -4199,7 +4231,7 @@
    "first_release": "2006-11",
    "hs_id": "10052678",
    "image": "https://www.1999.co.jp/itbig05/10052678.jpg",
-   "notes": "Series No.12",
+   "notes": "Series No.12. First released 2006 in a small white box with a plastic blister (Metal Dracky's guide).",
    "aka": [
     "Stoneman"
    ],
@@ -4237,6 +4269,10 @@
     {
      "label": "Square Enix e-STORE",
      "url": "https://store.jp.square-enix.com/estore/e/edragonquest-figure/"
+    },
+    {
+     "label": "metalfigurecollector.com",
+     "url": "https://metalfigurecollector.com/dragon-quest-metallic-monsters-gallery/"
     }
    ],
    "wiki": "https://dragon-quest.org/wiki/Stone_golem",
@@ -4254,7 +4290,7 @@
    "first_release": "2006-11",
    "hs_id": "10052677",
    "image": "https://www.1999.co.jp/itbig05/10052677.jpg",
-   "notes": "Series No.11 First edition is noticeably darker than later runs.",
+   "notes": "Series No.11 First edition is noticeably darker than later runs. First released 2006 in a small white box with a plastic blister (Metal Dracky's guide).",
    "aka": [
     "Goldman"
    ],
