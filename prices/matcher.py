@@ -85,7 +85,7 @@ TOKENS = {
     "onion-slime": [r"かわ有|かわあり|皮有|皮あり|皮つき|皮付|unpeeled"],
     "onion-slime-peeled": [r"かわ無|かわなし|皮無|皮なし|peeled"],
     "scruffy-dqmsl10": [r"10周年|10th|dqmsl|金の|ごーるど|gold|金色"],
-    "drakeslime-dq7r": [r"reimagined|りいまじんど|vii|dq7|ごーるど|gold|金色"],
+    "drakeslime-dq7r": [r"reimagined|りいまじんど|vii|dq7|(?<![0-9])7(?![0-9])|発売記念|記念|ごーるど|gold|金色"],
     "dragonlord-fukubiki-black": [r"ふくびき|ぶらっく|黒|black"],
     "healslime-gold-contest": [r"ごーるど|gold|金色|金の"],
     "slime-gold-dq9-rakuten": [r"楽天|らくてん|rakuten"],
