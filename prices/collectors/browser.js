@@ -96,13 +96,27 @@
   // Navigate page by page (…&page_token=v1:N) and call __mmgRun('mercari-sold'|'mercari-ask') on each; results add up.
   async function mercariPage(out, kind) {
     for (let i = 0; i < 20 && !document.querySelector('li[data-testid="item-cell"]'); i++) await sleep(500);
+    await sleep(1500);
+    // Mercari only fills in a cell (photo, title, price) once it has been scrolled into view, so scroll down the
+    // whole page first; without this only the first ~15 of ~120 cells per page were read.
+    const readable = li => li.querySelector('img') && li.querySelector('[data-testid="item-tile-price"]');
+    for (let pass = 0; pass < 3; pass++) {
+      for (let y = 0; y < document.body.scrollHeight; y += 500) { window.scrollTo(0, y); await sleep(250); }
+      window.scrollTo(0, document.body.scrollHeight); await sleep(800);
+      const all = [...document.querySelectorAll('li[data-testid="item-cell"]')];
+      if (all.every(readable)) break;
+    }
+    window.scrollTo(0, 0);
     const cells = [...document.querySelectorAll('li[data-testid="item-cell"]')];
+    out.seenIds = out.seenIds || new Set();
     for (const li of cells) {
       const a = li.querySelector('a[href*="/item/"], a[href*="/shops/product/"]');
       const img = li.querySelector('img');
       const pr = li.querySelector('[data-testid="item-tile-price"]');
-      if (!a || !img || !pr) continue;
+      if (!a || !img || !pr) { out.stats.unread = (out.stats.unread || 0) + 1; continue; }
       const id = a.getAttribute('href').split('/').pop();
+      if (out.seenIds.has(id)) continue; // listings shift between pages while we read; count each once
+      out.seenIds.add(id);
       const title = (img.getAttribute('alt') || '').replace(/のサムネイル.*$/, '');
       const txt = pr.textContent;
       const cur = /US\$|\$/.test(txt) ? 'USD' : 'JPY';
