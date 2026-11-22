@@ -39,6 +39,8 @@ EXCLUDE = re.compile(
     r"りぺいんと|repaint|かすたむ|改造|ぎゃらりーhd|hd\d|ちゃぷたー|くりすたるもんすたーず|"
     # monsters only made in the older Monsters Gallery line (titled \"メタリック モンスターズギャラリー\" for its metallic colour)
     r"ぼーんふぁいたー|"
+    # other Dragon Quest lines sellers tag "メタリック モンスターズギャラリー": bottle caps, the 立体モンスター図鑑 figures, Battle Road
+    r"ぼとるきゃっぷ|立体もんすたー図鑑|ばとるろーど|"
     r"きーほるだー|すとらっぷ|こいん|ぶらいとあーつ|そふび|ぬいぐるみ|一番くじ|がちゃ|ぽーちのみ|写真のみ|ぽすたー|"
     # display stands sold on their own (third-party stands for the Items Gallery swords and shields);
     # a figure listed "with stand" (台座付き / 台座あり) is still a figure
@@ -99,6 +101,7 @@ TOKENS = {
 
 # Extra names seen in listings (written as they appear; they are normalised like everything else).
 EXTRA_NAMES = {
+    "drakeslime": ["ドラコスライム"],  # common misspelling of ドラゴスライム
     "metal-king-slime": ["メタルキングスライム"],
     "lemon-king": ["レモンキングスライム"],
     "killing-machine-2": ["キラーマシンⅡ", "キラーマシーン2"],
@@ -145,7 +148,7 @@ BASE_OVERRIDE = {
     "slamichi-yoshinoya": ["スラミチ"],
     "slamichi-happy-yellow": ["スラミチ"],
     "scruffy-dqmsl10": ["ワルぼう"],
-    "drakeslime-dq7r": ["ドラゴスライム"],
+    "drakeslime-dq7r": ["ドラゴスライム", "ドラコスライム"],
     "onion-slime": ["たまねぎスライム"],
     "onion-slime-peeled": ["たまねぎスライム"],
     "liquid-metal-slime-l": ["はぐれメタル"],
